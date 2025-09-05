@@ -17,6 +17,7 @@
 
 ;;; GCMH:
 
+(autoload 'gcmh-mode "gcmh")
 (after-init!
  (gcmh-mode 1))
 
