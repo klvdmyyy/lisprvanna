@@ -6,13 +6,23 @@
 (set! make-backup-files nil)
 
 (after-init!
- (set-font! (find-font (font-spec :name "FiraCode Nerd Font")))
- (set-theme! 'modus-operandi))
+ ;; Nano dark is so interested theme.
+ ;;
+ ;; With some customizations it can be one of the best
+ ;; dark theme which I ever seen.
+ (require 'nano-theme)
+ (set-theme! 'nano-dark)
+
+ ;; Load font: FiraCode Nerd Font
+ (set-font! (find-font (font-spec :name "FiraCode Nerd Font"))))
 
 (autoload 'vertico-mode "vertico" nil t)
 (if after-init-time
     (vertico-mode 1)
   (after-init! (vertico-mode 1)))
+
+(autoload 'magit "magit")
+(bind-key "C-x g" 'magit global-map)
 
 (autoload 'avy-goto-char-2 "avy")
 

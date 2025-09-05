@@ -2,6 +2,8 @@
 ;;
 ;;; Commentary:
 ;;
+;; TODO: See more emacs optimizations in `DoomEmacs' and `minimal-emacs.d'
+;;
 ;;; Code:
 
 (setq gc-cons-threshold most-positive-fixnum)
