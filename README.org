@@ -8,11 +8,10 @@ Special thanks for those beatifull package manager: [[https://github.com/djr7C4/
 
 All packages in this configurations managed by ~git~ and ~git-subtree~.
 
-* Modules
+* Modules and Lisp
 
-This configuration are modulized by my own package.
-
-See [[file:lisp/modulize.el][modulize.el]] and [[file:modules/README.org][modules readme]]
+- lisp/ :: Configuration provided features
+- modules/ :: Main source code of my configuration
 
 * Running
 
