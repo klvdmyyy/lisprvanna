@@ -2,6 +2,9 @@
 
 (module! (utils appearance))
 (module! (utils lazydo))
+(module! (eshell setup))
+(module! (eshell extra))
+(module! (eshell commands))
 
 (set! make-backup-files nil)
 
@@ -21,6 +24,22 @@
     (vertico-mode 1)
   (after-init! (vertico-mode 1)))
 
+(autoload 'marginalia-mode "marginalia" nil t)
+(after-init!
+ (marginalia-mode 1))
+
+(after-init!
+ (require 'orderless)
+ (set! completion-styles '(orderless basic)))
+
+(autoload 'consult-buffer "consult")
+(autoload 'consult-line "consult")
+(autoload 'consult-goto-line "consult")
+(bind-keys ([remap switch-to-buffer] . consult-buffer)
+	   ("s-B" . consult-buffer)
+	   ("C-s" . consult-line)
+	   ([remap goto-line] . consult-goto-line))
+
 (autoload 'magit "magit")
 (bind-key "C-x g" 'magit global-map)
 
@@ -38,3 +57,25 @@
 (bind-key* "M-o M-d" 'ace-delete-window global-map)
 (bind-key* "M-o M-v" 'split-window-vertically)
 (bind-key* "M-o M-h" 'split-window-horizontally)
+
+(defun my-eshell-prompt ()
+  (format
+   "\n(%s) %s [%s] %s\n$"
+   user-login-name
+   (eshell/shortened-pwd)
+   (format-time-string "%H:%M:%S")
+   (eshell/pp-last-status)))
+
+(set! eshell-prompt-function #'my-eshell-prompt)
+
+(bind-key "s-e" 'project-eshell-or-eshell)
+
+(after! 'eshell
+  (require 'em-alias)
+  (require 'em-hist)
+
+  (add-hook 'eshell-mode-hook 'eshell-mode-setup)
+
+  (bind-key "s-e" 'switch-to-prev-buffer-or-eshell eshell-mode-map)
+  (autoload 'consult-history "consult")
+  (bind-key "M-r" 'consult-history eshell-hist-mode-map))

@@ -89,6 +89,7 @@ this stage of initialization."
 
 ;;; STP:
 
+(setq-default stp-allow-naive-byte-compile t)
 (setq stp-source-directory (expand-file-name "package-source" user-emacs-directory)
       stp-info-file (expand-file-name "../stp-pkg-info.eld" stp-source-directory))
 

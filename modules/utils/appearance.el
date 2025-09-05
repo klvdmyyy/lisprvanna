@@ -40,4 +40,9 @@ in `server-mode'."
               (select-frame frame)
               (load-theme theme :no-confirm))))
 
+(defmacro with-face (str &rest props)
+  "Return STR propertized with PROPS."
+  (declare (indent defun))
+  `(propertize ,str 'face (list ,@props)))
+
 ;;; appearnace.el ends here
