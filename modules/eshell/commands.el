@@ -32,7 +32,7 @@
                       (eshell/pwd))))))
 
 (defun eshell/pp-last-status ()
-  (autoload nerd-icons-faicon "nerd-icons")
+  (autoload 'nerd-icons-faicon "nerd-icons")
   (let ((status (number-to-string eshell-last-command-status)))
     (if (string-equal status "0")
         (with-face (concat (nerd-icons-faicon "nf-fa-check") " " status)

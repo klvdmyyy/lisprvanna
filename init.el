@@ -1,12 +1,21 @@
+
+;; Load modules handler.
 (require 'module)
+
+;;; Modules:
 
 (module! (utils appearance))
 (module! (utils lazydo))
+
 (module! (eshell setup))
 (module! (eshell extra))
 (module! (eshell commands))
 
+;;; Some options:
+
 (set! make-backup-files nil)
+
+;;; Themes and Fonts:
 
 (after-init!
  ;; Nano dark is so interested theme.
@@ -19,18 +28,26 @@
  ;; Load font: FiraCode Nerd Font
  (set-font! (find-font (font-spec :name "FiraCode Nerd Font"))))
 
+;;; Vertico:
+
 (autoload 'vertico-mode "vertico" nil t)
 (if after-init-time
     (vertico-mode 1)
   (after-init! (vertico-mode 1)))
 
+;;; Marginalia:
+
 (autoload 'marginalia-mode "marginalia" nil t)
 (after-init!
  (marginalia-mode 1))
 
+;;; Orderless:
+
 (after-init!
  (require 'orderless)
  (set! completion-styles '(orderless basic)))
+
+;;; Consult:
 
 (autoload 'consult-buffer "consult")
 (autoload 'consult-line "consult")
@@ -40,13 +57,20 @@
 	   ("C-s" . consult-line)
 	   ([remap goto-line] . consult-goto-line))
 
+;;; Magit:
+
 (autoload 'magit "magit")
 (bind-key "C-x g" 'magit global-map)
 
+;;; Avy:
+
 (autoload 'avy-goto-char-2 "avy")
+(autoload 'avy-goto-word-0 "avy")
 
 (bind-key "C-'" 'avy-goto-char-2 prog-mode-map)
 (bind-key "C-'" 'avy-goto-word-0 text-mode-map)
+
+;;; Ace Window:
 
 (autoload 'ace-window "ace-window")
 (autoload 'ace-swap-window "ace-window")
@@ -58,9 +82,11 @@
 (bind-key* "M-o M-v" 'split-window-vertically)
 (bind-key* "M-o M-h" 'split-window-horizontally)
 
+;;; Eshell:
+
 (defun my-eshell-prompt ()
   (format
-   "\n(%s) %s [%s] %s\n$"
+   "\n(%s) %s [%s] %s\n$ "
    user-login-name
    (eshell/shortened-pwd)
    (format-time-string "%H:%M:%S")
