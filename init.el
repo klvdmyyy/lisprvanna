@@ -15,6 +15,11 @@
 
 (set! make-backup-files nil)
 
+;;; GCMH:
+
+(after-init!
+ (gcmh-mode 1))
+
 ;;; Themes and Fonts:
 
 (after-init!
