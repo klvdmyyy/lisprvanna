@@ -110,7 +110,8 @@
 
 (autoload 'dired-gitignore-mode "dired-gitignore")
 
-(bind-key "C-d" 'dired-gitignore-mode dired-mode-map)
+(after! 'dired
+  (bind-key "C-d" 'dired-gitignore-mode dired-mode-map))
 (add-hook 'dired-mode-hook 'dired-gitignore-mode)
 
 ;;; Corfu:
@@ -133,3 +134,8 @@
               :map corfu-popupinfo-map
               ("M-n" . corfu-popupinfo-scroll-up)
               ("M-p" . corfu-popupinfo-scroll-down)))
+
+;;; Cape:
+
+(add-hook 'completion-at-point-functions #'cape-file)
+(add-hook 'completion-at-point-functions #'cape-history)

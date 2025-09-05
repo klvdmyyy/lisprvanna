@@ -34,6 +34,9 @@
 (defmacro after! (object &rest body)
   "Better alternative to `with-eval-after-load'.
 
+WARN: Function binding can cause issue. Be carefully with collisions.
+For example: `dired' as package and `dired' as command.
+
 TODO: `:any' keyword"
   (declare (indent defun))
   (let ((object (eval `(,@object))))
