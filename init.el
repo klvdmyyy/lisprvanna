@@ -137,8 +137,8 @@
   (require 'corfu))
 
 (after! 'corfu
-  (setq corfu-cycle t)
-  (setq tab-always-indent 'complete)
+  (set! corfu-cycle t)
+  (set! tab-always-indent 'complete)
   (global-corfu-mode 1)
 
   (require 'corfu-popupinfo)
