@@ -15,6 +15,10 @@
 
 (set! make-backup-files nil)
 
+(after-init!
+ (recentf-mode 1)
+ (which-key-mode 1))
+
 ;;; GCMH:
 
 (autoload 'gcmh-mode "gcmh")
@@ -151,3 +155,49 @@
 
 (add-hook 'completion-at-point-functions #'cape-file)
 (add-hook 'completion-at-point-functions #'cape-history)
+
+;;; Smartparens:
+
+(defconst default-pairs-list
+  '((?\( . ?\))
+    (?\[ . ?\])
+    (?\{ . ?\}))
+  "List of default pairs.")
+
+(defun open-pair-p (char)
+  "Return t if CHAR is opening pair."
+  (member char (mapcar (lambda (pairs) (car pairs)) default-pairs-list)))
+
+(defun close-pair-p (char)
+  "Return t if CHAR is closing pair."
+  (member char (mapcar (lambda (pairs) (cdr pairs)) default-pairs-list)))
+
+(defun indent-between-pairs ()
+  "Open a new brace or bracket expression, with relevant newlines and indent."
+  (interactive)
+  (if (and (open-pair-p (char-before))
+           (close-pair-p (char-after)))
+      (progn
+        (newline-and-indent)
+        (unless (eq (char-after) '?\n)
+          (newline)
+          (indent-according-to-mode)
+          (forward-line -1)
+          (indent-according-to-mode)))
+    (newline-and-indent)))
+
+(bind-key "RET" 'indent-between-pairs prog-mode-map)
+
+(autoload 'smartparens-mode "smartparens" nil t)
+(autoload 'smartparens-strict-mode "smartparens" nil t)
+
+(add-hook 'prog-mode-hook 'smartparens-mode)
+(add-hook 'prog-mode-hook 'smartparens-strict-mode)
+
+(after! 'smartparens
+  (require 'smartparens-config)
+  (bind-keys :map smartparens-mode-map
+             ("M-s" . nil)
+             ("M-DEL" . sp-backward-unwrap-sexp)
+             ("C-<left>" . sp-forward-barf-sexp)
+             ("C-<right>" . sp-forward-slurp-sexp)))
