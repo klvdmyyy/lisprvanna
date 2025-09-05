@@ -1,6 +1,10 @@
 ;;; -*- buffer-read-only: t; no-byte-compile: t; -*-
 
 ((packages
+  ("ace-window" (method . git)
+   (remote . "https://github.com/abo-abo/ace-window")
+   (last-remote . "https://github.com/abo-abo/ace-window")
+   (version . "0.10.0") (update . stable) (requirements (avy "0.5.0")))
   ("anaphora" (method . git)
    (remote . "https://github.com/rolandwalker/anaphora.git")
    (update . stable))
