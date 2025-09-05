@@ -1,18 +1,28 @@
+# Ignore all files (with exclusion)
 *
 !.gitignore
 
+# (Early)Initializaion file
 !early-init.el
 !init.el
 
+# Useful script
 !run.sh
 
+# Configuration files
 !lisp
 !lisp/**
 !modules
 !modules/**
 
+# Package management
 !stp-pkg-info.eld
 !package-source
 !package-source/**
 
+# Documentation/Org files
 !README.org
+
+# Compiled Emacs Lisp
+*.elc
+*.eln
