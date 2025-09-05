@@ -98,6 +98,12 @@ Defining New Commands
 * Current Prefix Command::
 * Transient State::
 
+Binding Suffix and Infix Commands
+
+* Group Specifications::
+* Suffix Specifications::
+
+
 Classes and Methods
 
 * Group Classes::
@@ -109,6 +115,12 @@ Classes and Methods
 * Prefix Slots::
 * Suffix Slots::
 * Predicate Slots::
+
+Suffix Methods
+
+* Suffix Value Methods::
+* Suffix Format Methods::
+
 
 @end detailmenu
 @end menu
@@ -1245,7 +1257,7 @@ binds the transient's infix and suffix commands.  In other words, it
 defines the complete transient, not just the transient prefix command
 that is used to invoke that transient.
 
-@defmac transient-define-prefix name arglist [docstring] [keyword value]@dots{} group@dots{} [body@dots{}]
+@defmac transient-define-prefix name arglist [docstring] [keyword value]... group... [body...]
 This macro defines @var{NAME} as a transient prefix command and binds the
 transient's infix and suffix commands.
 
@@ -1302,7 +1314,7 @@ you would otherwise use a group vector.  If an included group is
 placed at the top-level of a prefix (as opposed of inside inside
 a vector as a child group), then the symbol should be quoted.
 
-@defmac transient-define-group name group@dots{}
+@defmac transient-define-group name group...
 This macro define one or more groups and stores them in symbol NAME@.
 GROUPs have the same form as for @code{transient-define-prefix}.
 @end defmac
@@ -1319,7 +1331,12 @@ functions such as @code{transient-insert-suffix} (see @ref{Modifying Existing Tr
 their arguments, which has the same form as the specifications used in
 @code{transient-define-prefix}.
 
-@anchor{Group Specifications}
+@menu
+* Group Specifications::
+* Suffix Specifications::
+@end menu
+
+@node Group Specifications
 @subsection Group Specifications
 
 @cindex group specifications
@@ -1474,7 +1491,7 @@ using @code{,}.  This feature is experimental and should be avoided.
 
 The form of suffix specifications is documented in the next node.
 
-@anchor{Suffix Specifications}
+@node Suffix Specifications
 @subsection Suffix Specifications
 
 @cindex suffix specifications
@@ -1599,7 +1616,7 @@ Note that an infix is a special kind of suffix.  Depending on context
 ``suffixes'' means ``suffixes (including infixes)'' or ``non-infix
 suffixes''.
 
-@defmac transient-define-suffix name arglist [docstring] [keyword value]@dots{} body@dots{}
+@defmac transient-define-suffix name arglist [docstring] [keyword value]... body...
 This macro defines @var{NAME} as a transient suffix command.
 
 @var{ARGLIST} are the arguments that the command takes.
@@ -1616,7 +1633,7 @@ The infix arguments are usually accessed by using @code{transient-args}
 inside @code{interactive}.
 @end defmac
 
-@defmac transient-define-infix name arglist [docstring] [keyword value]@dots{}
+@defmac transient-define-infix name arglist [docstring] [keyword value]...
 This macro defines @var{NAME} as a transient infix command.
 
 @var{ARGLIST} is always ignored (but mandatory never-the-less) and
@@ -1649,7 +1666,7 @@ define your own infix command class.  In that case you have to use
 value of the @code{:transient} keyword.
 @end defmac
 
-@defmac transient-define-argument name arglist [docstring] [keyword value]@dots{}
+@defmac transient-define-argument name arglist [docstring] [keyword value]...
 This macro defines @var{NAME} as a transient infix command.
 
 This is an alias for @code{transient-define-infix}.  Only use this alias
@@ -2455,7 +2472,12 @@ commands.  The default method effectively describes the command using
 To get information about the methods implementing these generic
 functions use @code{describe-function}.
 
-@anchor{Suffix Value Methods}
+@menu
+* Suffix Value Methods::
+* Suffix Format Methods::
+@end menu
+
+@node Suffix Value Methods
 @subsection Suffix Value Methods
 
 @defun transient-init-value obj
@@ -2537,7 +2559,7 @@ unless a concrete method is implemented, this falls through to
 the default implementation, which is a noop.
 @end defun
 
-@anchor{Suffix Format Methods}
+@node Suffix Format Methods
 @subsection Suffix Format Methods
 
 @defun transient-format obj
