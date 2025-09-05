@@ -2,6 +2,12 @@
 #+author: Klementiev Dmitry
 #+email: klementievd08@yandex.ru
 
+* Subtree Package Manager
+
+Special thanks for those beatifull package manager: [[https://github.com/djr7C4/subtree-package][subtree-package]].
+
+All packages in this configurations managed by ~git~ and ~git-subtree~.
+
 * Modules
 
 This configuration are modulized by my own package.
