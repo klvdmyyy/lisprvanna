@@ -28,6 +28,11 @@
   ("dash" (method . git)
    (remote . "https://github.com/magnars/dash.el.git")
    (update . stable))
+  ("dired-gitignore" (method . git)
+   (remote . "https://github.com/johannes-mueller/dired-gitignore.el")
+   (last-remote
+    . "https://github.com/johannes-mueller/dired-gitignore.el")
+   (version . "0.2.0") (update . stable) (requirements (emacs "27.1")))
   ("f" (method . git) (remote . "https://github.com/rejeep/f.el.git")
    (update . stable))
   ("llama" (method . git)
