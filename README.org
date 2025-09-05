@@ -1,0 +1,21 @@
+#+title: Welcome to your Lisprvanna
+#+author: Klementiev Dmitry
+#+email: klementievd08@yandex.ru
+
+* Modules
+
+This configuration are modulized by my own package.
+
+See [[file:lisp/modulize.el][modulize.el]] and [[file:modules/README.org][modules readme]]
+
+* Running
+
+You have two ways to run this lisprvanna:
+
+1. Clone this repository to =~/.config/emacs= or =~/.emacs.d=.
+
+   More convenient way to run this configuration.
+
+2. Clone this repository anywhere and execute ~./run.sh~ script.
+
+   You can also run Emacs in terminal with ~./run.sh -nw~.
