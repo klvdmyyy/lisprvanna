@@ -3,7 +3,7 @@
 (module! (utils appearance))
 (module! (utils lazydo))
 
-(setq make-backup-files nil)
+(set! make-backup-files nil)
 
 (after-init!
  (set-font! (find-font (font-spec :name "FiraCode Nerd Font")))
