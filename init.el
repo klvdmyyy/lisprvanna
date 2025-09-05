@@ -105,3 +105,31 @@
   (bind-key "s-e" 'switch-to-prev-buffer-or-eshell eshell-mode-map)
   (autoload 'consult-history "consult")
   (bind-key "M-r" 'consult-history eshell-hist-mode-map))
+
+;;; Dired Gitignore:
+
+(autoload 'dired-gitignore-mode "dired-gitignore")
+
+(bind-key "C-d" 'dired-gitignore-mode dired-mode-map)
+(add-hook 'dired-mode-hook 'dired-gitignore-mode)
+
+;;; Corfu:
+
+;; Example of lazy loading on command
+(after! 'self-insert-command
+  (require 'corfu))
+
+(after! 'corfu
+  (setq corfu-cycle t)
+  (setq tab-always-indent 'complete)
+  (global-corfu-mode 1)
+
+  (require 'corfu-popupinfo)
+  (corfu-popupinfo-mode 1)
+
+  (bind-keys* :map corfu-map
+              ("TAB" . corfu-complete)
+              ("M-d" . corfu-popupinfo-toggle)
+              :map corfu-popupinfo-map
+              ("M-n" . corfu-popupinfo-scroll-up)
+              ("M-p" . corfu-popupinfo-scroll-down)))
