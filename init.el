@@ -52,10 +52,16 @@
 (autoload 'consult-buffer "consult")
 (autoload 'consult-line "consult")
 (autoload 'consult-goto-line "consult")
+
+(autoload 'consult-imenu "consult-imenu")
+(autoload 'consult-imenu-multi "consult-imenu")
+
 (bind-keys ([remap switch-to-buffer] . consult-buffer)
 	   ("s-B" . consult-buffer)
 	   ("C-s" . consult-line)
-	   ([remap goto-line] . consult-goto-line))
+	   ([remap goto-line] . consult-goto-line)
+	   ([remap imenu] . consult-imenu)
+	   ("M-g M-i" . consult-imenu-multi))
 
 ;;; Magit:
 
