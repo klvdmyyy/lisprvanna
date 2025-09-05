@@ -1,0 +1,79 @@
+[[https://github.com/johannes-mueller/dired-gitignore.el/actions/workflows/test.yml][https://github.com/johannes-mueller/dired-gitignore.el/actions/workflows/test.yml/badge.svg]]
+[[https://melpa.org/#/dired-gitignore][https://melpa.org/packages/dired-gitignore-badge.svg]]
+
+* dired-gitignore
+
+dired minor mode to ignore files that are to be ignored by git.
+
+** Purpose
+
+Sometimes the working copy directories of your git repos get flooded with
+temporary files, log files, cache stuff – in short files not belonging to the
+repo and ignored by git.  At those times you might wish for a convenient way to
+hide those files in your =dired= buffer.  If yes, =dired-gitignore= is for you.
+
+Hide and show the gitignored files by a simple configurable keystroke.
+
+
+** Installation
+
+Easiest way to install is from [[https://melpa.org][MELPA]].  If you have configured the MELPA sources
+you can just install the =dired-gitignore= package using the =package-install=
+command.
+
+You can of course also use [[https://github.com/raxod502/straight.el][straight.el]]. Put the following lines into your
+startup file.
+
+#+BEGIN_EXAMPLE emacs-lisp
+(straight-use-package
+ '(dired-gitignore :type git :host github :repo "johannes-mueller/dired-gitignore.el"))
+#+END_EXAMPLE
+
+
+** Usage
+
+Just bind the command =(dired-gitignore-global-mode)= to some key of your choice. For
+example by putting something like
+
+#+BEGIN_EXAMPLE emacs-lisp
+(define-key dired-mode-map (kbd "h") #'dired-gitignore-global-mode)
+#+END_EXAMPLE
+
+into your startup files.  Then you will hide and show the gitignored files in a
+dired buffer by hitting the =H= key.
+
+If you want to ignore gitignored files by default add also
+
+#+BEGIN_EXAMPLE emacs-lisp
+(dired-gitignore-global-mode t)
+#+END_EXAMPLE
+
+
+** Status
+
+It started off as a rainy Sunday afternoon hack.  Although it matured in some
+way over more than two years, probably not everything will work under any
+circumstances.  Bug reports and feedback welcome in the issue tracker.  Pull
+requests also, of course.  In the meantime it turns out to be quite stable, as
+it does not seem to cause any trouble.
+
+
+** Limitations / Caveats
+
+A standard UNIX shell is required for =dired-gitignore.el= to work.  If you
+experience issues with the standard shell you are using you might consider
+setting the =shell-file-name= variable to =/bin/bash= or so to change it.
+
+
+** Alternatives
+
+There is a way more sophisticated package =dired-filter.el= of the
+[[https://github.com/Fuco1/dired-hacks][dired-hacks]] suite.  It can do things like this one and many more.  So if you
+have more complicated needs regarding filtering in =dired= this might be a
+better bet for you.  However, =dired-filter.el= is also more complex, it has
+more than 1200 lines of code plus some heavy dependencies as opposed to less
+than 100 in =dired-gitignore= with =dired= as only dependency.
+
+** Credits
+
+This package has been inspired by [[https://github.com/mattiasb/dired-hide-dotfiles][dired-hide-dotfiles]].
