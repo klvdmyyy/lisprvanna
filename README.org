@@ -1,6 +1,9 @@
-#+title: Welcome to your Lisprvanna
+#+title: Welcome to my Lisprvanna
 #+author: Klementiev Dmitry
 #+email: klementievd08@yandex.ru
+
+This repository contain source code of my Emacs configuration and all
+installed packages (see =package-source/=).
 
 * Subtree Package Manager
 
@@ -8,10 +11,25 @@ Special thanks for those beatifull package manager: [[https://github.com/djr7C4/
 
 All packages in this configurations managed by ~git~ and ~git-subtree~.
 
+** Why all packages in git repository?
+
+Because it's just subtrees. Just clone and run this configuration =)
+
+** Why STP?
+
+Because it's something new and so interesting. I must try it
+in my main configuration.
+
 * Modules and Lisp
 
 - lisp/ :: Configuration provided features
 - modules/ :: Main source code of my configuration
+
+** Modules
+
+I think my modules is the most easiest way to manage configuration source code.
+
+It's just a lot of source files which placed in subdirectories.
 
 * Running
 
