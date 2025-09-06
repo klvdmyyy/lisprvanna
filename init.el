@@ -11,6 +11,9 @@
 (module! (eshell extra))
 (module! (eshell commands))
 
+(module! (elisp highlight-defined))
+(elisp-highlight-defined)
+
 ;;; Some options:
 
 (set! make-backup-files nil)
