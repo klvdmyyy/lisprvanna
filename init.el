@@ -35,8 +35,8 @@
  ;;
  ;; With some customizations it can be one of the best
  ;; dark theme which I ever seen.
- (require 'jazz-theme)
- (set-theme! 'jazz)
+ (require 'doom-themes)
+ (set-theme! 'doom-badger)
 
  ;; Load font: FiraCode Nerd Font
  (set-font! (find-font (font-spec :name "FiraCode Nerd Font"))))
