@@ -35,8 +35,8 @@
  ;;
  ;; With some customizations it can be one of the best
  ;; dark theme which I ever seen.
- (require 'nano-theme)
- (set-theme! 'nano-dark)
+ (require 'soothe-theme)
+ (set-theme! 'soothe)
 
  ;; Load font: FiraCode Nerd Font
  (set-font! (find-font (font-spec :name "FiraCode Nerd Font"))))

@@ -45,12 +45,6 @@
    (last-remote
     . "https://github.com/johannes-mueller/dired-gitignore.el")
    (version . "0.2.0") (update . stable) (requirements (emacs "27.1")))
-  ("emacs-soothe-theme" (method . git)
-   (remote . "https://github.com/emacsfodder/emacs-soothe-theme")
-   (last-remote . "https://github.com/emacsfodder/emacs-soothe-theme")
-   (version . "b4fae2f5a97557ae87ab991d60b974246b4009fa")
-   (update . unstable) (branch . "master")
-   (requirements (emacs "24.3") (autothemer "0.2")))
   ("f" (method . git) (remote . "https://github.com/rejeep/f.el.git")
    (update . stable))
   ("gcmh" (method . git) (remote . "https://gitlab.com/koral/gcmh")
