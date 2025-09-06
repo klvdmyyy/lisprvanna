@@ -81,10 +81,10 @@
 ;;; Avy:
 
 (autoload 'avy-goto-char-2 "avy")
-(autoload 'avy-goto-word-0 "avy")
+(autoload 'avy-goto-word-1 "avy")
 
-(bind-key "C-'" 'avy-goto-char-2 prog-mode-map)
-(bind-key "C-'" 'avy-goto-word-0 text-mode-map)
+(bind-key "C-c ; c" 'avy-goto-char-2 global-map)
+(bind-key "C-c ; w" 'avy-goto-word-1 global-map)
 
 ;;; Ace Window:
 
@@ -92,11 +92,13 @@
 (autoload 'ace-swap-window "ace-window")
 (autoload 'ace-delete-window "ace-window")
 
-(bind-key* "M-o M-c" 'ace-window global-map)
+(bind-key* "M-o M-o" 'ace-window global-map)
+
 (bind-key* "M-o M-s" 'ace-swap-window global-map)
 (bind-key* "M-o M-d" 'ace-delete-window global-map)
-(bind-key* "M-o M-v" 'split-window-vertically)
-(bind-key* "M-o M-h" 'split-window-horizontally)
+
+(bind-key* "M-o M-2" 'split-window-vertically global-map)
+(bind-key* "M-o M-3" 'split-window-horizontally global-map)
 
 ;;; Eshell:
 
