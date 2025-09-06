@@ -39,6 +39,11 @@
    (last-remote
     . "https://github.com/johannes-mueller/dired-gitignore.el")
    (version . "0.2.0") (update . stable) (requirements (emacs "27.1")))
+  ("doom-themes" (method . git)
+   (remote . "https://github.com/doomemacs/themes")
+   (last-remote . "https://github.com/doomemacs/themes")
+   (version . "v2.3.0") (update . stable)
+   (requirements (emacs "25.1") (cl-lib "0.5")))
   ("f" (method . git) (remote . "https://github.com/rejeep/f.el.git")
    (update . stable))
   ("gcmh" (method . git) (remote . "https://gitlab.com/koral/gcmh")
