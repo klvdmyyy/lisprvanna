@@ -9,7 +9,9 @@
     ((pred seq-empty-p)
      `())
     (`(,var ,val . ,next)
-     (cond ((boundp var)
+     (cond ((and (boundp var)
+		 ;; For `mode-line-format' like variables.
+		 (not (alist-get var (buffer-local-variables))))
 	    `(progn
 	       (setq ,var ,val)
 	       (set! ,@next)))
