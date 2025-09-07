@@ -5,6 +5,7 @@
 ;;; Code:
 
 (defmacro set! (&rest args)
+  "Drop-in replacement for both `setq', `setopt' and `setq-default'."
   (pcase args
     ((pred seq-empty-p)
      `())
