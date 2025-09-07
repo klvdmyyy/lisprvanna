@@ -12,17 +12,18 @@ possible frames also after creating it.
 
 IMPORTANT: By default `set-face-attribute' can cause issues
 in `server-mode'."
-  (set-face-attribute 'default nil
-                      :font font
-                      :weight weight
-                      :height height)
-  (add-hook 'after-make-frame-functions
-            (lambda (frame)
-              (select-frame frame)
-              (set-face-attribute 'default nil
-                                  :font font
-                                  :weight weight
-                                  :height height))))
+  (if (not (daemonp))
+      (set-face-attribute 'default nil
+			  :font font
+			  :weight weight
+			  :height height)
+    (add-hook 'after-make-frame-functions
+              (lambda (frame)
+		(select-frame frame)
+		(set-face-attribute 'default nil
+                                    :font font
+                                    :weight weight
+                                    :height height)))))
 
 (cl-defun set-theme! (theme)
   "Setup THEME for all frames.

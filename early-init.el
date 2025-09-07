@@ -26,7 +26,7 @@
  initial-buffer-choice nil
 
  ;; Other
- inhibit-x-resources nil)
+ inhibit-x-resources t)
 
 ;; Remove "For information about GNU Emacs..." message at startup
 (advice-add 'display-startup-echo-area-message :override #'ignore)
