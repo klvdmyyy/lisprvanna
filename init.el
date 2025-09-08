@@ -311,6 +311,17 @@
 
 ;;; Org Agenda:
 
+(defun get-agenda-files ()
+  "Get value for `org-agenda-files' variable."
+  (directory-files-recursively agenda-directory
+			       "\\`[A-Za-z0-9]*\\.org\\'"))
+
+;; Update `org-agenda-files' every time you open Org Agenda (execute `org-agenda').
+(define-advice org-agenda
+    (:before (&rest _) update-files)
+  (custom-set-variables
+   '(org-agenda-files (get-agenda-files))))
+
 (bind-key "a" 'org-agenda mode-specific-map)
 
 ;;; Org Supertag:
