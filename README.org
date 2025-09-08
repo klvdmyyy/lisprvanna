@@ -114,3 +114,12 @@ Supported things in my Emacs Workflow.
 - LaTeX (=pdflatex=, =lualatex=, =xelatex=, =texinfo= and e.t.c.)
 
   For things like PDF writing, Resume/CV and etc. Also I sometimes read (sometimes also write) TeXinfo format (see gnu texinfo: =.texi=).
+
+** Note Taking
+
+For note taking in Emacs we have following variants: =org-roam=, =denote= and =org-supertag=.
+
+Other note taking applications: =obsidian=, =notion=, =logseq=.
+
+
+*My choose is =org-supertag=*
