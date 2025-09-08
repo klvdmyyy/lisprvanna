@@ -58,3 +58,39 @@ Following org directories structure provided:
 
 - ~/agenda :: Directory with agenda things
 - ~/notes :: Directory with Org notes (Org Supertag)
+
+* Supported things
+
+Supported things in my Emacs Workflow.
+
+** Languages
+
+- Emacs Lisp
+
+  My main programming language. I use Emacs a lot in my life and work.
+
+- Python
+
+  My second programming language which I use for scripting.
+
+- Bash language
+
+  I use GNU/Linux. I use Bash for simple automation in my system/workflow.
+
+** Markup
+
+- Org Mode
+
+  I use Emacs a lot --> I use Org Mode a lot.
+
+- reStructuredText
+
+  I love using rST-like syntax in Emacs Lisp comments. I use rST or Sphinx only sometimes.
+
+- Markdown
+
+  Second markup language after Org Mode.
+
+- LaTeX (=pdflatex=, =lualatex=, =xelatex=, =texinfo= and e.t.c.)
+
+  For things like PDF writing, Resume/CV and etc. Also I sometimes read (sometimes also write) TeXinfo format (see gnu texinfo: =.texi=).
