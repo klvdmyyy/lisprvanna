@@ -40,7 +40,7 @@
 
 (after-init!
  (require 'doom-themes)
- (set-theme! 'doom-gruvbox-light)
+ (set-theme! 'doom-gruvbox)
 
  ;; Load font: FiraCode Nerd Font
  (set-font! (find-font (font-spec :name "FiraCode Nerd Font"))))
