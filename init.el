@@ -4,7 +4,7 @@
 
 ;;; Modules:
 
-(module! (utils appearance))
+(module! (utils))
 (module! (utils lazydo))
 
 (module! (eshell setup))
@@ -12,15 +12,19 @@
 (module! (eshell commands))
 
 (module! (elisp highlight-defined))
-(elisp-highlight-defined)
+(elisp-highlight-defined)		; Enable highlighting for defined ELisp symbols.
 
 ;;; Some options:
 
-(set! make-backup-files nil)
+(set! make-backup-files nil
+      default-input-method "russian-computer"
+      cursor-type '(bar . 2)
+      cursor-in-non-selected-windows nil)
 
 (after-init!
  (recentf-mode 1)
- (which-key-mode 1))
+ (which-key-mode 1)
+ (blink-cursor-mode -1))
 
 ;;; GCMH:
 
@@ -31,12 +35,8 @@
 ;;; Themes and Fonts:
 
 (after-init!
- ;; Nano dark is so interested theme.
- ;;
- ;; With some customizations it can be one of the best
- ;; dark theme which I ever seen.
  (require 'doom-themes)
- (set-theme! 'doom-badger)
+ (set-theme! 'doom-gruvbox-light)
 
  ;; Load font: FiraCode Nerd Font
  (set-font! (find-font (font-spec :name "FiraCode Nerd Font"))))
@@ -62,12 +62,14 @@
 
 ;;; Consult:
 
-(autoload 'consult-buffer "consult")
-(autoload 'consult-line "consult")
-(autoload 'consult-goto-line "consult")
+(autoload 'consult-theme "consult" nil t)
 
-(autoload 'consult-imenu "consult-imenu")
-(autoload 'consult-imenu-multi "consult-imenu")
+(autoload 'consult-buffer "consult" nil t)
+(autoload 'consult-line "consult" nil t)
+(autoload 'consult-goto-line "consult" nil t)
+
+(autoload 'consult-imenu "consult-imenu" nil t)
+(autoload 'consult-imenu-multi "consult-imenu" nil t)
 
 (bind-keys ([remap switch-to-buffer] . consult-buffer)
 	   ("s-B" . consult-buffer)
@@ -206,3 +208,7 @@
              ("M-DEL" . sp-backward-unwrap-sexp)
              ("C-<left>" . sp-forward-barf-sexp)
              ("C-<right>" . sp-forward-slurp-sexp)))
+
+;;; Org Mode:
+
+(add-hook 'org-mode-hook 'org-indent-mode)

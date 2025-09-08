@@ -4,7 +4,7 @@
 ;;
 ;;; Code:
 
-(module! (utils appearance))
+(module! (utils))
 
 (defun eshell/shortened-pwd ()
   "Return the shortened PWD.

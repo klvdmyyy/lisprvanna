@@ -4,23 +4,6 @@
 ;;
 ;;; Code:
 
-(defmacro set! (&rest args)
-  "Drop-in replacement for both `setq', `setopt' and `setq-default'."
-  (pcase args
-    ((pred seq-empty-p)
-     `())
-    (`(,var ,val . ,next)
-     (cond ((and (boundp var)
-		 ;; For `mode-line-format' like variables.
-		 (not (alist-get var (buffer-local-variables))))
-	    `(progn
-	       (setq ,var ,val)
-	       (set! ,@next)))
-	   (t `(progn
-		 (setq-default ,var ,val)
-		 (set! ,@next)))))
-    (_ (error "Unexpected arguments: %S" args))))
-
 (defmacro after-init! (&rest body)
   `(add-hook 'after-init-hook
 	     (lambda ()

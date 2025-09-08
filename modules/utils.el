@@ -1,8 +1,30 @@
-;;; appearance.el --- Appearance utilities -*- lexical-binding: t; -*-
+;;; utils.el --- General utilities for my Emacs -*- lexical-binding: t; -*-
 ;;
 ;;; Commentary:
 ;;
 ;;; Code:
+
+(defmacro set! (&rest ARGS)
+  "Drop-in replacament for `setq-default' with ARGS."
+  `(setq-default ,@ARGS))
+
+;; (defmacro set! (&rest args)
+;;   "Drop-in replacement for both `setq', `setopt' and `setq-default'."
+;;   (pcase args
+;;     ((pred seq-empty-p)
+;;      `())
+;;     (`(,var ,val . ,next)
+;;      (cond ((and (boundp var)
+;; 		 ;; For `mode-line-format' like variables.
+;; 		 (not (alist-get var (buffer-local-variables))))
+;; 	    `(progn
+;; 	       (setq ,var ,val)
+;; 	       (set! ,@next)))
+;; 	   (t `(progn
+;; 		 (setq-default ,var ,val)
+;; 		 (set! ,@next)))))
+;;     (_ (error "Unexpected arguments: %S" args))))
+
 
 (cl-defun set-font! (font &key (weight 'regular) (height 130))
   "Setup FONT for all frames.
@@ -46,4 +68,4 @@ in `server-mode'."
   (declare (indent defun))
   `(propertize ,str 'face (list ,@props)))
 
-;;; appearnace.el ends here
+;;; utils.el ends here
