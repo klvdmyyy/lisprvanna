@@ -23,6 +23,8 @@
 # Documentation/Org files
 !README.org
 !TODOLIST.org
+!docs/
+!docs/**
 
 # Compiled Emacs Lisp
 *.elc

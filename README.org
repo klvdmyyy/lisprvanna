@@ -5,6 +5,26 @@
 This repository contain source code of my Emacs configuration and all
 installed packages (see =package-source/=).
 
+* COMMENT Documentation
+
+Recently I start learning rST, Python and Sphinx.
+
+** COMMENT Building Info file for Emacs
+
+Firstly execute following commands in your shell
+
+#+begin_src sh
+  $ sphinx-build -b texinfo docs/ docs/_build/texinfo
+  $ make -k docs/_build/texinfo
+#+end_src
+
+and run =(info "Lisprvanna")=
+
+** COMMENT Other formats
+
+Read *Sphinx* documentation for information about supported
+output formats.
+
 * Subtree Package Manager
 
 Special thanks for those beatifull package manager: [[https://github.com/djr7C4/subtree-package][subtree-package]].

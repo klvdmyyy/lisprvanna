@@ -114,6 +114,12 @@
 	     ("C-s"   . consult-outline)
 	     ("C-S-s" . consult-line)))
 
+(after! 'org
+  (autoload 'consult-org-heading "consult-org" nil t)
+  (bind-keys :map org-mode-map
+	     ("C-s"   . consult-org-heading)
+	     ("C-S-s" . consult-line)))
+
 ;;; Magit:
 
 (autoload 'magit "magit")
