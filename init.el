@@ -170,12 +170,13 @@
 (autoload 'ace-swap-window "ace-window")
 (autoload 'ace-delete-window "ace-window")
 
-(bind-keys ("M-o"   . ace-window)
-	   ("M-s"   . ace-swap-window)
-	   ("C-x 0" . delete-window)
-	   ("C-x 1" . delete-other-windows)
-	   ("C-x 2" . split-window-vertically)
-	   ("C-x 3" . split-window-horizontally))
+(bind-keys* ("M-o"   . ace-window)
+	    ;; TODO: Maybe change this bindings?!
+	    ("M-s"   . ace-swap-window)
+	    ("C-x 0" . delete-window)
+	    ("C-x 1" . delete-other-windows)
+	    ("C-x 2" . split-window-vertically)
+	    ("C-x 3" . split-window-horizontally))
 
 ;;; Eshell:
 
