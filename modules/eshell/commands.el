@@ -42,5 +42,15 @@
         :foreground "#c75f5f"
         :weight 'bold))))
 
+(defun eshell/notes ()
+  (dired notes-directory))
+
+(defun eshell/agenda ()
+  (sleep-for 0.15)
+  (org-agenda))
+
+(defun eshell/dagenda ()
+  (dired agenda-directory))
+
 ;;; commands.el ends here
 
