@@ -42,3 +42,12 @@ You have two ways to run this lisprvanna:
 2. Clone this repository anywhere and execute ~./run.sh~ script.
 
    You can also run Emacs in terminal with ~./run.sh -nw~.
+
+* System Dependencies
+
+1. Git
+2. GNU Make
+3. Grep, Ripgrep, Find, Locate and etc
+4. +TDLib for telega.el+
+5. Python
+6. /Ollama/
