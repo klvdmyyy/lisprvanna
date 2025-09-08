@@ -45,9 +45,10 @@
 (defun eshell/notes ()
   (dired notes-directory))
 
-(defun eshell/agenda ()
-  (sleep-for 0.15)
-  (org-agenda))
+(defun eshell/agenda (&rest KEYS)
+  (sleep-for 0.1)
+  ;; TODO: Add separator for more custom agenda commands.
+  (org-agenda nil (string-join KEYS)))
 
 (defun eshell/dagenda ()
   (dired agenda-directory))
