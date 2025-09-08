@@ -4,9 +4,9 @@
 ;;
 ;;; Code:
 
-(defmacro set! (&rest ARGS)
-  "Drop-in replacament for `setq-default' with ARGS."
-  `(setq-default ,@ARGS))
+;; (defmacro set! (&rest ARGS)
+;;   "Drop-in replacament for `setq-default' with ARGS."
+;;   `(setq-default ,@ARGS))
 
 ;; (defmacro set! (&rest args)
 ;;   "Drop-in replacement for both `setq', `setopt' and `setq-default'."

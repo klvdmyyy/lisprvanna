@@ -16,10 +16,10 @@
 
 ;;; Some options:
 
-(set! make-backup-files nil
-      default-input-method "russian-computer"
-      cursor-type '(bar . 2)
-      cursor-in-non-selected-windows nil)
+(setq-default make-backup-files nil
+	      default-input-method "russian-computer"
+	      cursor-type '(bar . 2)
+	      cursor-in-non-selected-windows nil)
 
 (after-init!
  (recentf-mode 1)
@@ -58,7 +58,7 @@
 
 (after-init!
  (require 'orderless)
- (set! completion-styles '(orderless basic)))
+ (setq completion-styles '(orderless basic)))
 
 ;;; Consult:
 
@@ -114,7 +114,7 @@
    (format-time-string "%H:%M:%S")
    (eshell/pp-last-status)))
 
-(set! eshell-prompt-function #'my-eshell-prompt)
+(setq-default eshell-prompt-function #'my-eshell-prompt)
 
 (bind-key "s-e" 'project-eshell-or-eshell)
 
@@ -143,8 +143,8 @@
   (require 'corfu))
 
 (after! 'corfu
-  (set! corfu-cycle t)
-  (set! tab-always-indent 'complete)
+  (setq corfu-cycle t)
+  (setq tab-always-indent 'complete)
   (global-corfu-mode 1)
 
   (require 'corfu-popupinfo)
