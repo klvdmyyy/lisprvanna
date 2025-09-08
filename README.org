@@ -51,3 +51,10 @@ You have two ways to run this lisprvanna:
 4. +TDLib for telega.el+
 5. Python
 6. /Ollama/
+   
+* Org Directories
+
+Following org directories structure provided:
+
+- ~/agenda :: Directory with agenda things
+- ~/notes :: Directory with Org notes (Org Supertag)

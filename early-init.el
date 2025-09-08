@@ -111,6 +111,8 @@ this stage of initialization."
   "Install command for STP package manager."
   t)
 
+(bind-key "p" 'stp-list mode-specific-map)
+
 (provide 'early-init)
 
 ;;; early-init.el ends here

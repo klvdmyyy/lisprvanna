@@ -1,3 +1,25 @@
+;;; init.el --- Initialization file of my Lisprvanna -*- no-byte-compile: t; lexical-binding: t; -*-
+;;
+;;; Commentary:
+;;
+;; Navigation
+;; ==========
+;;
+;; Press C-s for jump between headings (`outline-minor-mode').
+;;
+;; See "lisp/module.el" for more documentation about modulizing
+;; in my Emacs configuration. (I thinking about rewriting these configuration)
+;;
+;; 
+;; Package Management
+;; ==================
+;;
+;; Press "C-c p" or "M-x `stp-list'"
+;;
+;; For more documentation about subtree-package see
+;; source code and original author github.
+;;
+;;; Code:
 
 ;; Load modules handler.
 (require 'module)
@@ -13,6 +35,9 @@
 
 (module! (elisp highlight-defined))
 (elisp-highlight-defined)		; Enable highlighting for defined ELisp symbols.
+
+(module! (core custom))
+(setup-custom-file "custom.el")		; FIXME: Can cause issues with `custom-file' and customizations.
 
 ;;; Some options:
 
@@ -82,6 +107,12 @@
 	   ([remap goto-line] . consult-goto-line)
 	   ([remap imenu] . consult-imenu)
 	   ("M-g M-i" . consult-imenu-multi))
+
+(after! 'outline
+  (autoload 'consult-outline "consult" nil t)
+  (bind-keys :map outline-minor-mode-map
+	     ("C-s"   . consult-outline)
+	     ("C-S-s" . consult-line)))
 
 ;;; Magit:
 
@@ -215,6 +246,34 @@
              ("C-<left>" . sp-forward-barf-sexp)
              ("C-<right>" . sp-forward-slurp-sexp)))
 
+;;; Leetcode:
+
+(custom-set-variables
+ '(leetcode-directory "~/leetcode"))
+
 ;;; Org Mode:
 
 (add-hook 'org-mode-hook 'org-indent-mode)
+
+;;; Org Agenda:
+
+(bind-key "a" 'org-agenda mode-specific-map)
+
+;;; Org Supertag:
+
+;; TODO: Lazy loading.
+
+(require 'org-supertag)
+
+(custom-set-variables
+ '(org-supertag-sync-directories '("~/notes")))
+
+(provide 'init)
+
+;;; init.el ends here
+
+;;; Local Variables:
+;;; eval: (outline-minor-mode 1)
+;;; outline-regexp: ";;; "
+;;; outline-heading-end-regexp: "\n"
+;;; End:
