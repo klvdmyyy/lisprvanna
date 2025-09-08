@@ -300,6 +300,14 @@
   (custom-set-variables
    '(treesit-font-lock-level 4)))
 
+;;; Bash:
+
+(add-to-list 'auto-mode-alist '("\\.sh\\'" . bash-ts-mode))
+(add-to-list 'major-mode-remap-alist '(sh-mode . bash-ts-mode))
+
+(after! 'bash-ts-mode
+  (setq bash-ts-mode-hook sh-mode-hook))
+
 ;;; Python:
 
 (add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode))
