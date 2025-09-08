@@ -251,6 +251,23 @@
 (custom-set-variables
  '(leetcode-directory "~/leetcode"))
 
+;;; Tree-Sitter:
+
+(custom-set-variables
+ '(treesit-language-source-alist
+   '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+     (python "https://github.com/tree-sitter/tree-sitter-python"))))
+
+(after! 'treesit
+  (custom-set-variables
+   '(treesit-font-lock-level 4)))
+
+;;; Python:
+
+(add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode))
+(after! 'python-ts-mode
+  (setq python-ts-mode-hook python-mode-hook))
+
 ;;; Org Mode:
 
 (add-hook 'org-mode-hook 'org-indent-mode)
