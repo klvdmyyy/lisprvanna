@@ -21,6 +21,37 @@
 ;;
 ;;; Code:
 
+;;; Home Directories:
+
+(defconst agenda-directory "~/agenda"
+  "Домашняя Agenda директория.")
+
+(defconst notes-directory "~/notes"
+  "Домашняя директория с заметками.
+
+Задумывалась как общая, но в основном тут хранятся
+`org' файлы (`org-supertag' заметки).")
+
+(defconst projects-directory "~/projects"
+  "Домашняя директория с моими проектами.
+
+Хранит всё что так или иначе может относиться к проектам.")
+
+(defconst photo-directory "~/photo"
+  "Домашняя директория с фотками.
+
+Хранит в себе не только фото но и:
+* Видео
+* Прочие медиа-файлы
+
+В целом хранит в себе все мои(наши) фото и видео.")
+
+;; (defconst video-directory "~/video")
+;; (defconst media-directory "~/media")
+
+(defconst documents-directory "~/documents"
+  "Домашняя директория с документами.")
+
 ;; Load modules handler.
 (require 'module)
 
