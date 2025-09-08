@@ -16,10 +16,14 @@
 
 ;;; Some options:
 
-(setq-default make-backup-files nil
-	      default-input-method "russian-computer"
-	      cursor-type '(bar . 2)
-	      cursor-in-non-selected-windows nil)
+(custom-set-variables
+ '(make-backup-files nil)
+ '(default-input-method "russian-computer")
+ '(cursor-type '(bar . 2))
+ '(cursor-in-non-selected-windows nil))
+
+;; Maximized frame by default.
+(push '(fullscreen . maximized) default-frame-alist)
 
 (after-init!
  (recentf-mode 1)
@@ -58,7 +62,8 @@
 
 (after-init!
  (require 'orderless)
- (setq completion-styles '(orderless basic)))
+ (custom-set-variables
+  '(completion-styles '(orderless basic))))
 
 ;;; Consult:
 
@@ -114,7 +119,8 @@
    (format-time-string "%H:%M:%S")
    (eshell/pp-last-status)))
 
-(setq-default eshell-prompt-function #'my-eshell-prompt)
+(custom-set-variables
+ '(eshell-prompt-function #'my-eshell-prompt))
 
 (bind-key "s-e" 'project-eshell-or-eshell)
 
@@ -143,8 +149,9 @@
   (require 'corfu))
 
 (after! 'corfu
-  (setq corfu-cycle t)
-  (setq tab-always-indent 'complete)
+  (custom-set-variables
+   '(corfu-cycle t)
+   '(tab-always-indent 'complete))
   (global-corfu-mode 1)
 
   (require 'corfu-popupinfo)
