@@ -48,7 +48,8 @@
 (defun eshell/agenda (&rest KEYS)
   (sleep-for 0.1)
   ;; TODO: Add separator for more custom agenda commands.
-  (org-agenda nil (string-join KEYS)))
+  (let ((KEYS (string-join KEYS)))
+    (org-agenda nil (if (string-empty-p KEYS) nil KEYS))))
 
 (defun eshell/dagenda ()
   (dired agenda-directory))
