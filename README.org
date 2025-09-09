@@ -37,8 +37,9 @@ Because it's just subtrees. Just clone and run this configuration =)
 
 ** Why STP?
 
-Because it's something new and so interesting. I must try it
-in my main configuration.
+1. Because it's something new and so interesting. I must try it in my main configuration.
+2. So interactive. I don't write a lot of code about package management. I love it.
+3. Doing all things manually. Yeap, sometimes I need to resolve dependencies manually.
 
 * Modules and Lisp
 
@@ -122,4 +123,4 @@ For note taking in Emacs we have following variants: =org-roam=, =denote= and =o
 Other note taking applications: =obsidian=, =notion=, =logseq=.
 
 
-*My choose is =org-supertag=*
+*My choose is =org-roam=*

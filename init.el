@@ -191,9 +191,9 @@
 (autoload 'gitattributes-mode "git-modes" nil t)
 (autoload 'gitconfig-mode "git-modes" nil t)
 
-(add-to-list 'auto-mode-alist '("\\`\\.gitignore\\'" . gitignore-mode))
-(add-to-list 'auto-mode-alist '("\\`\\.gitattributes\\'" . gitattributes-mode))
-(add-to-list 'auto-mode-alist '("\\`\\.gitconfig\\'" . gitconfig-mode))
+(add-to-list 'auto-mode-alist '("\\.gitignore\\'" . gitignore-mode))
+(add-to-list 'auto-mode-alist '("\\.gitattributes\\'" . gitattributes-mode))
+(add-to-list 'auto-mode-alist '("\\.gitconfig\\'" . gitconfig-mode))
 
 ;;; Avy:
 
@@ -387,7 +387,9 @@
 
 (setq org-roam-v2-ack t)
 
-(add-hook 'emacs-startup-hook #'org-roam-db-autosync-mode)
+(autoload 'org-roam-db-autosync-mode "org-roam" nil t)
+
+(add-hook 'emacs-startup-hook 'org-roam-db-autosync-mode)
 
 (custom-set-variables
  '(org-roam-directory notes-directory)
@@ -395,6 +397,9 @@
  '(org-roam-node-display-template
    (concat "${title:*} "
 	   (propertize "${tags:30}" 'face 'org-tag))))
+
+(bind-keys :map mode-specific-map
+	   ("n f" . org-roam-node-find))
 
 (provide 'init)
 
