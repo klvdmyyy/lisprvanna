@@ -324,11 +324,20 @@
 (after! 'bash-ts-mode
   (setq bash-ts-mode-hook sh-mode-hook))
 
+(add-hook 'bash-ts-mode-hook 'eglot-ensure)
+
 ;;; Python:
 
 (add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode))
 (after! 'python-ts-mode
   (setq python-ts-mode-hook python-mode-hook))
+
+(add-hook 'python-ts-mode-hook 'eglot-ensure)
+
+;;; Java:
+
+;; TODO: Java setup.
+;; I would like to learn Java language =)
 
 ;;; Org Mode:
 
