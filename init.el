@@ -396,10 +396,27 @@
  '(org-roam-db-update-on-save t)
  '(org-roam-node-display-template
    (concat "${title:*} "
-	   (propertize "${tags:30}" 'face 'org-tag))))
+	   (propertize "${tags:30}" 'face 'org-tag)))
+ ;; '(org-roam-dailies-directory "daily/")
+ ;; '(org-roam-dailies-capture-templates '())
+ '(org-roam-capture-templates
+   '(("d" "default" plain
+      "%?"
+      :target (file+head "${slug}.org"
+			 "#+title: ${title}
+#+author: Klementiev Dmitry
+#+email: klementievd08@yandex.ru
+#+date: %<%Y-%m-%d>
+")
+      :unarowwed t))))
 
 (bind-keys :map mode-specific-map
-	   ("n f" . org-roam-node-find))
+	   ("n f" . org-roam-node-find)
+	   ("n n" . org-roam-buffer-toggle)
+	   ("n i" . org-roam-node-insert)
+	   ("n C" . org-roam-capture)
+	   ("r t" . org-roam-tag-add)
+	   ("r T" . org-roam-tag-remove))
 
 (provide 'init)
 
