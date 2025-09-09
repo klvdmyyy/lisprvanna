@@ -19,6 +19,20 @@
 ;; For more documentation about subtree-package see
 ;; source code and original author github.
 ;;
+;;
+;; Color themes
+;; ============
+;;
+;; Following theme-packages are pre-installed:
+;; * doom-themes
+;; * spacemacs-theme
+;;
+;; By default `spacemacs-dark' is used. For me the best themes is
+;; modus, spacemacs and a little themes from `doom-themes'.
+;;
+;; Also you can take a look to following themes:
+;; * zenburn
+;;
 ;;; Code:
 
 ;;; Home Directories:
@@ -95,8 +109,10 @@
 ;;; Themes and Fonts:
 
 (after-init!
- (require 'doom-themes)
- (set-theme! 'doom-gruvbox)
+ ;; (require 'doom-themes)
+ ;; (set-theme! 'doom-gruvbox)
+ (require 'spacemacs-theme)
+ (set-theme! 'spacemacs-dark)
 
  ;; Load font: FiraCode Nerd Font
  (set-font! (find-font (font-spec :name "FiraCode Nerd Font"))))
