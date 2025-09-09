@@ -99,7 +99,7 @@
 
 (after-init!
  (recentf-mode 1)
- (which-key-mode 1)
+ ;; (which-key-mode 1)
  (blink-cursor-mode -1))
 
 ;;; GCMH:
