@@ -92,7 +92,10 @@
  '(make-backup-files nil)
  '(default-input-method "russian-computer")
  '(cursor-type '(bar . 2))
- '(cursor-in-non-selected-windows nil))
+ '(cursor-in-non-selected-windows nil)
+ 
+ ;; Disable *Compile-Log* for packages.
+ '(byte-compile-log-warning-function #'ignore))
 
 ;; Maximized frame by default.
 (push '(fullscreen . maximized) default-frame-alist)
