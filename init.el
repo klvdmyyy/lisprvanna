@@ -1,5 +1,7 @@
 ;;; init.el --- Initialization file of my Lisprvanna -*- no-byte-compile: t; lexical-binding: t; -*-
 ;;
+;; TODO: Check and Remove unused packages.
+;;
 ;;; Commentary:
 ;;
 ;; Navigation
