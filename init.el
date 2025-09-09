@@ -99,7 +99,7 @@
 
 (after-init!
  (recentf-mode 1)
- ;; (which-key-mode 1)
+ (which-key-mode 1)
  (blink-cursor-mode -1))
 
 ;;; GCMH:
@@ -381,14 +381,20 @@
 
 (bind-key "a" 'org-agenda mode-specific-map)
 
-;;; Org Supertag:
+;;; Org Roam:
 
 ;; TODO: Lazy loading.
 
-(require 'org-supertag)
+(setq org-roam-v2-ack t)
+
+(add-hook 'emacs-startup-hook #'org-roam-db-autosync-mode)
 
 (custom-set-variables
- '(org-supertag-sync-directories '("~/notes")))
+ '(org-roam-directory notes-directory)
+ '(org-roam-db-update-on-save t)
+ '(org-roam-node-display-template
+   (concat "${title:*} "
+	   (propertize "${tags:30}" 'face 'org-tag))))
 
 (provide 'init)
 
