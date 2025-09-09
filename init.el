@@ -185,6 +185,16 @@
 (after! 'magit
   (magit-todos-mode 1))
 
+;;; Git Modes:
+
+(autoload 'gitignore-mode "git-modes" nil t)
+(autoload 'gitattributes-mode "git-modes" nil t)
+(autoload 'gitconfig-mode "git-modes" nil t)
+
+(add-to-list 'auto-mode-alist '("\\`\\.gitignore\\'" . gitignore-mode))
+(add-to-list 'auto-mode-alist '("\\`\\.gitattributes\\'" . gitattributes-mode))
+(add-to-list 'auto-mode-alist '("\\`\\.gitconfig\\'" . gitconfig-mode))
+
 ;;; Avy:
 
 (autoload 'avy-goto-char-2 "avy")
