@@ -101,6 +101,7 @@
 (push '(fullscreen . maximized) default-frame-alist)
 
 (after-init!
+ (global-visual-line-mode 1)
  (recentf-mode 1)
  (which-key-mode 1)
  (blink-cursor-mode -1))
@@ -178,6 +179,22 @@
   (bind-keys :map org-mode-map
 	     ("C-s"   . consult-org-heading)
 	     ("C-S-s" . consult-line)))
+
+;;; Embark:
+
+(autoload 'embark-act      "embark" nil t)
+(autoload 'embark-dwim     "embark" nil t)
+(autoload 'embark-bindings "embark" nil t)
+
+(bind-keys ("C-."   . embark-act)
+	   ("C-;"   . embark-dwim)
+	   ("C-h B" . embark-bindings))
+
+(autoload 'embark-collect-mode "embark" nil t)
+(autoload 'consult-preview-at-point-mode "consult" nil t)
+
+(after! 'embark-consult
+  (add-hook 'embark-collect-mode 'consult-preview-at-point-mode))
 
 ;;; Magit:
 
