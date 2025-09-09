@@ -119,6 +119,11 @@
  ;; Load font: FiraCode Nerd Font
  (set-font! (find-font (font-spec :name "FiraCode Nerd Font"))))
 
+;;; Highlight Todo:
+
+(autoload 'hl-todo-mode "hl-todo" nil t)
+(add-hook 'prog-mode-hook 'hl-todo-mode)
+
 ;;; Vertico:
 
 (autoload 'vertico-mode "vertico" nil t)
@@ -171,8 +176,14 @@
 
 ;;; Magit:
 
-(autoload 'magit "magit")
+(autoload 'magit "magit" nil t)
 (bind-key "C-x g" 'magit global-map)
+
+;;; Magit todos:
+
+(autoload 'magit-todos-mode "magit-todos" nil t)
+(after! 'magit
+  (magit-todos-mode 1))
 
 ;;; Avy:
 
