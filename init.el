@@ -182,13 +182,22 @@
 
 ;;; Embark:
 
-(autoload 'embark-act      "embark" nil t)
-(autoload 'embark-dwim     "embark" nil t)
-(autoload 'embark-bindings "embark" nil t)
+(autoload 'embark-act                 "embark" nil t)
+(autoload 'embark-dwim                "embark" nil t)
+(autoload 'embark-bindings            "embark" nil t)
+(autoload 'embark-prefix-help-command "embark")
+
+(setq prefix-help-command #'embark-prefix-help-command)
 
 (bind-keys ("C-."   . embark-act)
 	   ("C-;"   . embark-dwim)
 	   ("C-h B" . embark-bindings))
+
+(after! 'embark
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
 
 (autoload 'embark-collect-mode "embark" nil t)
 (autoload 'consult-preview-at-point-mode "consult" nil t)
