@@ -113,8 +113,10 @@
 (after-init!
  ;; (require 'doom-themes)
  ;; (set-theme! 'doom-gruvbox)
- (require 'spacemacs-theme)
- (set-theme! 'spacemacs-dark)
+ ;; (require 'spacemacs-theme)
+ ;; (set-theme! 'spacemacs-dark)
+ (require 'doom-themes)
+ (set-theme! 'doom-one-light)
 
  ;; Load font: FiraCode Nerd Font
  (set-font! (find-font (font-spec :name "FiraCode Nerd Font"))))
