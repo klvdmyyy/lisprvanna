@@ -182,7 +182,7 @@
 
 ;;; Consult GH (Github Intergration):
 
-
+;; TODO: Configure `consult-gh'
 
 ;;; Embark:
 
