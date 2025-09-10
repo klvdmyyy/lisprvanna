@@ -254,6 +254,15 @@
 
 ;;; Eshell:
 
+(autoload 'eat-eshell-mode "eat" nil t)
+(autoload 'eat-eshell-visual-command-mode "eat" nil t)
+
+;; For `eat-eshell-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-mode)
+
+;; For `eat-eshell-visual-command-mode'.
+(add-hook 'eshell-load-hook #'eat-eshell-visual-command-mode)
+
 (defun my-eshell-prompt ()
   (format
    "\n(%s) %s [%s] %s\n$ "
