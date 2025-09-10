@@ -1,0 +1,136 @@
+#+title: consult-gh - Changelog
+#+author: Armin Darvish
+#+language: en
+
+* Development
+
+* Version 3.0 (2025-09-06)
+This is a major update that adds a whole bunch of new features, especially for viewing/editing files.
+
+  - *Editing Files*:
+    Files that are viewed by consult-gh can now be edited and directly commited to GitHub, using =consult-gh-edit-file=. In file buffers that are created by consult-gh, an =after-save-hook= is added to ask the suer if they want to commit the changes directly to GitHub. Changes that have already ben saved can be commited to GitHub using =consult-gh-push-file=.
+    If the file that is being committed is on a protected branch, a pull request is created instead after user confirmation. If the file is in a repo that the user cannot edit, the repo is forked first after user confirmation.
+    In addition:
+    - YAML files of workflows can now be edited directly using the file editing capabilities. In a workflow view buffer, you can use =consult-gh-workflow-edit-yaml= to edit YAML files.
+    - Added interactive commands for deleting files, renaming files, uploading files, or creating new files.
+    - Introduced a new minor-mode for file-viewing buffers (for local =after-save-hook= and keybindings for editing files).
+
+  - *Dired-like mode*:
+    A new major mode is introduced: =consult-gh-dired-mode=, allowing browsing the files in a repo in a dired-like buffer with keybindings mostly similar to =dired= (e.g. m more mark, D for delete, R for rename, C for copy, ...) To use the dired mode (instead of choosing files in the minibuffer), =consult-gh-files-use-dired-like-mode= must be set to =t=.
+
+  - *Editing Repo Settings*:
+    - Added support for editing repo settings such as description, visibility, default branch, .... To edit a repo settting use =consult-gh-repo-edit-settings=
+    - Added support for directly editing repository's README with =consult-gh-repo-edit-readme=
+    - Added support for renaming a repo with =consult-gh-repo-rename=
+
+  - *Creating Branches*:
+    - Added support for creating new branches with =consult-gh-branch-create=.
+
+  - *Misc*:
+    - Added Embark actions for editing files and repos
+    - Other fixes and improvements
+    - Added completion functions for repo editing (i.e. complete branch names for default branch)
+    - Fixed documentation strings for various functions
+
+* Version 2.6 (2025-07-10)
+- Added support for workflows and runs
+  - Added support for listing workflows ("gh workflow list ...") with =consult-gh-workflow-list=
+  - Added support for viewing workflows in Emacs ("gh workflow view ...")
+  - Added support for enabling/disabling workflows ("gh workflow enable/disable ...") with =consult-gh-workflow-enbale= or =consult-gh-workflow-disable=
+  - Added support for running workflow ("gh workflow run ...") with =consult-gh-workflow-run=
+  - Added support for listing runs ("gh run list ...") with =consult-gh-run-list=
+  - Added suppport for viewing runs in Emacs ("gh run view ...") =consult-gh-run-view=
+- Added ansi-color for seeing logs of actions runs
+- Added yaml as dependency for parsing github action files
+- Other fixes and improvements
+  - Fixes reading title and body in org-format
+  - Fixes getting stuck in conversion form markdown to org-mode
+
+* Version 2.5.1 (2025-06-08)
+- fixes issues with parsing titles when creating pr or issue (#232)
+
+* Version 2.5 (2025-05-22)
+- Added support for interactively managing releases directly from Emacs
+  - Added =consult-gh-release-list= for browsing repository releases
+  - Implemented =consult-gh-release-create= for creating new releases with support for *auto-generated release notes*
+  - Created =consult-gh-release-edit= for modifying existing releases
+  - Added =consult-gh-release-delete= for removing releases
+- Added tooltips to users, repos, labels, ...
+  If the cursor is placed on a user name or repository name, ... a tooltip menu shows details. This can also be viewed by calling =M-x display-local-help=
+- Added more embark actions
+- Some clean up and refactoring to reduce repetition
+- other minor fixes
+
+* Version 2.4 (2025-04-17)
+- Refactored completion-at-point functions, and added support for completing references to issues with title (e.g. =#title= now can be competed to issue number), and improved the overall behavior of completion functions.
+- Fixed issue with loading the repo without internet (see #226) by defering loading the user organizations.
+- Fixed handling of projects names that conatin "," in theri name.
+- Fixed the default keybinding for "C-c C-c" in consult-gh-pr-view-mode buffers to comment on line of codes inside a source block.
+- Fixed adding repos to history when using consult-gh-orgs
+- Added consult-gh-dashboard-state-to-show to filter items in the dashboard by their state (open or closed)
+- Other minor fixes
+
+* Version 2.3 (2025-03-09)
+
+- *BREAKING CHANGE*: update to new consult API with breaking changes
+  consult-gh now uses the new consult API for async processes. See [[https://github.com/minad/consult/commit/ada079d5932700a8819ace622ef4323e73983161][Breaking Changes in Consult]] for more info!
+- add integration with [[https://github.com/blahgeek/emacs-pr-review][emacs-pr-review]] (see [[https://melpa.org/#/consult-gh-with-pr-review][consult-gh-with-pr-review on MELPA]])
+- improve consult-gh-dashboard by using consult--multi with async processes
+- bump up consult dependency to version 2.0
+- add previews for gitignore and license templates
+- add ability to customize the sections that are shown in issue/pr view
+  (e.g. limiting the number of comments loaded, showing commits, ...)
+- add ability to view pr commits and file changes (both for prs and when creating new ones)
+- add some more embark actions (for seeing PR's commits and diff, ...)
+- Update default actions to view actions instead of browse URL actions.
+- Fix permission checks for editing issues and prs.
+
+* Version 2.2 (2025-01-16)
+- improve embark keybindings (issue #174)
+- improve embark actions (see #190)
+- improve backward compatibility (issue #183)
+- remove dependency on dash.el (see #188)
+- fix minor issues and typos, ...
+
+* Vesrion 2.1 (2025-01-07)
+- Fixes bugs/issues in v2.0 (issues #178, #183, ...)
+- Listing commands like issue-list now have a customization option to chasnge the effect of c-u prefix (see issue #175)
+
+* Version 2.0 (2024-12-18)
+- Adds support for switching accounts (multi-account)
+- Adds support for alternative hosts (e.g. GitHub Enterprise)
+- Adds built-in support for adding comments to issues/PRs without the forge package
+- Adds built-in support for code review (comments on PRs, comments on code lines in a PR, ...)
+- Adds support for creating repositories, issues or pull requests from within emacs (e.g. support  =gh repo create=)
+- Introduces minor modes:
+   =consult-gh-embark-mode=: for enabling/disabling embark actions
+   =consult-gh-forge-mode=: for enabling/diabling forge integration
+   =consult-gh-issue-view-mode=: for buffers that view issues
+   =consult-gh-pr-view-mode=: for buffers that view pull requests
+   =consult-gh-topics-edit-comment-mode=: for editing comments
+- Cleans up the code for forge integration (no more hacking forge functions)
+- Improves file browsing (reusing downloaded files)
+- Cleans up the code to removes unnecessary redundancy
+- Cleans up the code (for MELPA compatibility)
+- Package is now on MELPA
+
+* Version 1.0 (2024-07-28)
+
+A major redeisgn:
+- Switches to async process with consult-async (allows dynamically updating search queries)
+- Adds support for searching Pull Requests, Codes, Files, ...
+- Improves file browsing
+- Improves integration with [[https://github.com/magit/forge][forge]]
+- Improves cloning, forking, ...
+- bumps up dependency to emacs 29.1
+
+* Version 0.12 (2023-10-08)
+
+- Overall bug fixes and improvements of UI.
+- =consult-gh-embark=: Improve embark actions.
+- =consult-gh-forge=: Adds integration with [[https://github.com/magit/forge][forge]].
+
+
+* Version 0.1 (2023-06-29)
+
+Initial stable release

@@ -1,0 +1,24 @@
+# Compiled
+*.elc
+
+#Autoloads
+*-autoloads.el
+
+# Packaging
+.cask
+
+# Backup files
+*~
+
+# Undo-tree save-files
+*.~undo-tree
+
+
+#test files
+test.org
+tests.org
+/tests
+
+#Editor Files
+.vscode
+.aider*
