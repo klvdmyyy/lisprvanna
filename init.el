@@ -103,7 +103,6 @@
 ;;; Some options:
 
 (custom-set-variables
- '(make-backup-files nil)
  '(default-input-method "russian-computer")
  '(cursor-type '(bar . 2))
  '(cursor-in-non-selected-windows nil)
