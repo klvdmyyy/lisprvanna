@@ -180,6 +180,10 @@
 	     ("C-s"   . consult-org-heading)
 	     ("C-S-s" . consult-line)))
 
+;;; Consult GH (Github Intergration):
+
+
+
 ;;; Embark:
 
 (autoload 'embark-act                 "embark" nil t)
