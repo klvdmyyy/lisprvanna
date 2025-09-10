@@ -87,6 +87,9 @@
 (module! (utils))
 (module! (utils lazydo))
 
+(module! (safety backups))
+(module! (safety autosave))
+
 (module! (eshell setup))
 (module! (eshell extra))
 (module! (eshell commands))
