@@ -231,6 +231,10 @@
 (after! 'magit
   (magit-todos-mode 1))
 
+;;; Magit Forge:
+
+;; TODO: Configure `forge'
+
 ;;; Git Modes:
 
 (autoload 'gitignore-mode "git-modes" nil t)
