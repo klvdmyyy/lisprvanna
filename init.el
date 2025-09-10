@@ -364,7 +364,8 @@
 (custom-set-variables
  '(treesit-language-source-alist
    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
-     (python "https://github.com/tree-sitter/tree-sitter-python"))))
+     (python "https://github.com/tree-sitter/tree-sitter-python")
+     (c "https://github.com/tree-sitter/tree-sitter-c"))))
 
 (after! 'treesit
   (custom-set-variables
@@ -376,15 +377,24 @@
 (add-to-list 'major-mode-remap-alist '(sh-mode . bash-ts-mode))
 
 (after! 'bash-ts-mode
-  (setq bash-ts-mode-hook sh-mode-hook))
+  (setq bash-ts-mode-hook (append bash-ts-mode-hook sh-mode-hook)))
 
 (add-hook 'bash-ts-mode-hook 'eglot-ensure)
+
+;;; C language:
+
+(add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
+
+(after! 'c-ts-mode
+  (setq c-ts-mode-hook (append c-ts-mode-hook c-mode-hook)))
+
+(add-hook 'c-ts-mode-hook 'eglot-ensure)
 
 ;;; Python:
 
 (add-to-list 'major-mode-remap-alist '(python-mode . python-ts-mode))
 (after! 'python-ts-mode
-  (setq python-ts-mode-hook python-mode-hook))
+  (setq python-ts-mode-hook (append python-ts-mode-hook python-mode-hook)))
 
 (add-hook 'python-ts-mode-hook 'eglot-ensure)
 
