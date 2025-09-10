@@ -37,6 +37,17 @@
 ;;
 ;;; Code:
 
+(custom-set-variables
+ '(user-full-name "Klementiev Dmitry")
+ '(user-mail-address "klementievd08@yandex.ru"))
+
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+        ("nongnu" . "https://elpa.nongnu.org/nongnu/")
+        ("melpa" . "https://melpa.org/packages/")))
+
+(advice-add 'stp-install-command :before 'package-refresh-contents)
+
 ;;; Home Directories:
 
 (defconst agenda-directory "~/agenda"
