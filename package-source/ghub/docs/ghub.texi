@@ -71,6 +71,12 @@ Getting Started
 * Creating and Storing a Token::
 * Github Configuration Variables::
 
+Creating and Storing a Token
+
+* Creating a Token::
+* Storing a Token::
+
+
 API
 
 * Their APIs::
@@ -333,7 +339,12 @@ git config --local FORGE.HOST.user USERNAME
 @node Creating and Storing a Token
 @section Creating and Storing a Token
 
-@anchor{Creating a Token}
+@menu
+* Creating a Token::
+* Storing a Token::
+@end menu
+
+@node Creating a Token
 @subsection Creating a Token
 
 To create a token, use the web interface of the host you want to
@@ -360,7 +371,7 @@ consult the documentation of that package, which in turn should tell
 you which scopes are needed and why.  The Forge package for example
 does so in @ref{Token Creation,,,forge,}.
 
-@anchor{Storing a Token}
+@node Storing a Token
 @subsection Storing a Token
 
 Please also see @ref{Top,,,auth,} for all the gory details about Auth-Source.
