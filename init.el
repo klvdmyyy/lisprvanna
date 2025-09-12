@@ -400,7 +400,8 @@
    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
      (python "https://github.com/tree-sitter/tree-sitter-python")
      (c "https://github.com/tree-sitter/tree-sitter-c")
-     (cpp "https://github.com/tree-sitter/tree-sitter-cpp"))))
+     ;; (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
+     )))
 
 (after! 'treesit
   (custom-set-variables
@@ -421,18 +422,10 @@
 (add-to-list 'major-mode-remap-alist '(c-mode . c-ts-mode))
 
 (after! 'c-ts-mode
+  (require 'cc-mode)
   (setq c-ts-mode-hook (append c-ts-mode-hook c-mode-hook)))
 
 (add-hook 'c-ts-mode-hook 'eglot-ensure)
-
-;;; C++ language:
-
-(add-to-list 'major-mode-remap-alist '(c++-mode . c++-ts-mode))
-
-(after! 'c++-ts-mode
-  (setq c++-ts-mode-hook (append c++-ts-mode-hook c++-mode-hook)))
-
-(add-hook 'c++-ts-mode-hook 'eglot-ensure)
 
 ;;; Python:
 
