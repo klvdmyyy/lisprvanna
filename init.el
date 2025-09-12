@@ -329,8 +329,7 @@
   (custom-set-variables
    '(corfu-cycle t)
    '(tab-always-indent 'complete))
-  ;; (global-corfu-mode 1)
-  (add-hook 'prog-mode-hook 'corfu-mode)
+  (global-corfu-mode 1)
 
   (require 'corfu-popupinfo)
   (corfu-popupinfo-mode 1)
@@ -448,6 +447,10 @@
 
 (add-hook 'python-ts-mode-hook 'eglot-ensure)
 
+;;; Pyvenv:
+
+(autoload 'pyvenv-workon "pyvenv")
+
 ;;; Java:
 
 ;; TODO: Java setup.
@@ -512,10 +515,6 @@
 	   ("r T" . org-roam-tag-remove))
 
 (provide 'init)
-
-;;; TODO FIXME NOTE MAYBE:
-
-(require 'pyvenv)
 
 ;;; init.el ends here
 
