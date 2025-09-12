@@ -407,6 +407,11 @@
   (custom-set-variables
    '(treesit-font-lock-level 4)))
 
+;;; SQL:
+
+;; Use default `sql-mode' in Emacs.
+(add-to-list 'auto-mode-alist '("\\.sql\\'" . sql-mode))
+
 ;;; Bash:
 
 (add-to-list 'auto-mode-alist '("\\.sh\\'" . bash-ts-mode))
