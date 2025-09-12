@@ -46,6 +46,8 @@ determine the exact padding."
 
 (def-doom-theme doom-acario-light
   "A light theme inspired by Acario light"
+  :family 'doom-acario
+  :background-mode 'light
 
 ;;;; Colors
   ;; name        default   256         16
@@ -113,7 +115,7 @@ determine the exact padding."
     (when doom-acario-light-padded-modeline
       (if (integerp doom-acario-light-padded-modeline) doom-acario-light-padded-modeline 4)))
 
-   (modeline-fg     nil)
+   (modeline-fg     'unspecified)
    (modeline-fg-alt base5)
 
    (modeline-bg
@@ -130,7 +132,7 @@ determine the exact padding."
   ;;;; Base theme face overrides
   (((font-lock-comment-face &override)
     :slant 'italic
-    :background (if doom-acario-light-comment-bg (doom-darken bg 0.05)))
+    :background (if doom-acario-light-comment-bg (doom-darken bg 0.05) 'unspecified))
    ((line-number &override) :foreground base4)
    ((line-number-current-line &override) :foreground orange)
    (mode-line

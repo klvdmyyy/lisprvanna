@@ -53,6 +53,8 @@ determine the exact padding."
 
 (def-doom-theme doom-nord-aurora
   "A dark theme inspired by Nord. Aurora flavour."
+  :family 'doom-nord
+  :background-mode 'dark
 
   ;; name        default   256       16
   ((bg         '("#2E3440" nil       nil            ))
@@ -120,7 +122,7 @@ determine the exact padding."
     (when (memq doom-nord-aurora-region-highlight '(frost snowstorm))
       base0))
 
-   (modeline-fg     nil)
+   (modeline-fg     'unspecified)
    (modeline-fg-alt base6)
 
    (modeline-bg
@@ -147,7 +149,7 @@ determine the exact padding."
 
    (font-lock-comment-face
     :foreground comments
-    :background (if doom-nord-aurora-comment-bg (doom-lighten bg 0.05)))
+    :background (if doom-nord-aurora-comment-bg (doom-lighten bg 0.05) 'unspecified))
    (font-lock-doc-face
     :inherit 'font-lock-comment-face
     :foreground doc-comments)

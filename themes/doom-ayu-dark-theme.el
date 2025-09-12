@@ -46,6 +46,8 @@ determine the exact padding."
 
 (def-doom-theme doom-ayu-dark
   "A dark theme inspired by Ayu dark"
+  :family 'doom-ayu
+  :background-mode 'dark
 
   ;; name        default   256       16
   (
@@ -171,7 +173,7 @@ determine the exact padding."
    (diff-removed :foreground vcs-removed)
    (font-lock-comment-face
     :foreground comments
-    :background (if doom-ayu-dark-comment-bg (doom-lighten bg 0.05)))
+    :background (if doom-ayu-dark-comment-bg (doom-lighten bg 0.05) 'unspecified))
    (font-lock-doc-face
     :inherit 'font-lock-comment-face
     :foreground doc-comments)
@@ -220,6 +222,7 @@ determine the exact padding."
    (org-hide :foreground hidden)
    (org-headline-done :foreground syntax-comment)
    (org-document-info-keyword :foreground comments)
+   (org-macro :foreground syntax-operator)
    ;;;; mic-paren
    ((paren-face-match &override) :foreground fg :background ui-selection-bg :weight 'ultra-bold)
    ;;;; rjsx-mode

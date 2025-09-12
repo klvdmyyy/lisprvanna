@@ -35,6 +35,8 @@ determine the exact padding."
 
 (def-doom-theme doom-plain-dark
   "Theme inspired by gko's plain dark."
+  :family 'doom-plain
+  :background-mode 'dark
 
   ;; name        default   256       16
   ((bg         '("#222222" nil       nil ))
@@ -105,7 +107,7 @@ determine the exact padding."
       `(,(doom-darken (car bg-alt) 0.1) ,@(cdr base0))))
    (modeline-bg-inactive   (doom-darken bg-alt 0.25))
    (modeline-bg-inactive-l `(,(car bg-alt) ,@(cdr base1)))
-   (modeline-fg     nil)
+   (modeline-fg     'unspecified)
    (modeline-fg-alt (doom-lighten modeline-bg-inactive 0.3)))
 
 

@@ -41,6 +41,8 @@ Can be an integer to determine the exact padding."
 
 (def-doom-theme doom-monokai-ristretto
   "A dark, vibrant theme inspired by Textmate's Monokai."
+  :family 'doom-molokai
+  :background-mode 'dark
 
   ;; name        gui       256       16
   ((bg         '("#2c2525" nil       nil            ))
@@ -224,6 +226,9 @@ Can be an integer to determine the exact padding."
    ((org-quote &override)                        :inherit 'italic :foreground base7 :background org-quote)
    (org-todo                                     :foreground yellow :bold 'inherit)
    (org-list-dt                                  :foreground yellow)
+   ((org-block &override) :background base2)
+   ((org-block-background &override) :background base2)
+   ((org-block-begin-line &override) :background base2)
    ;;;; php-mode
    (php-php-tag                                  :foreground orange)
    (php-function-name                            :foreground green)

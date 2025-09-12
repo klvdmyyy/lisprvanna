@@ -52,6 +52,8 @@ determine the exact padding."
 
 (def-doom-theme doom-opera
   "A dark Opera theme."
+  :family 'doom-opera
+  :background-mode 'dark
 
   ;; name        default   256       16
   ((bg         '("#323334" nil       nil            ))
@@ -112,7 +114,7 @@ determine the exact padding."
     (when doom-opera-padded-modeline
       (if (integerp doom-opera-padded-modeline) doom-opera-padded-modeline 4)))
 
-   (modeline-fg     nil)
+   (modeline-fg     'unspecified)
    (modeline-fg-alt base5)
 
    (modeline-bg
@@ -130,7 +132,7 @@ determine the exact padding."
   (((line-number &override) :foreground fg-alt)
    ((line-number-current-line &override) :foreground fg)
    ((font-lock-comment-face &override)
-    :background (if doom-opera-comment-bg (doom-lighten bg 0.05)))
+    :background (if doom-opera-comment-bg (doom-lighten bg 0.05) 'unspecified))
    (mode-line
     :background modeline-bg :foreground modeline-fg
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg)))
