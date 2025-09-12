@@ -1,6 +1,6 @@
 ;;; doom-themes.el --- an opinionated pack of modern color-themes -*- lexical-binding: t; -*-
 ;;
-;; Copyright (C) 2016-2022 Henrik Lissner
+;; Copyright (C) 2016-2024 Henrik Lissner
 ;;
 ;; Author: Henrik Lissner <contact@henrik.io>
 ;; Maintainer: Henrik Lissner <contact@henrik.io>
@@ -33,6 +33,8 @@
 ;;  - doom-earl-grey -- a gentle color scheme, for code (ported by @JuneKelly)
 ;;  - doom-ephemeral -- inspired by the Ephemeral Theme from elenapan's dotfiles (ported by @karetsu)
 ;;  - doom-fairy-floss -- a candy colored theme by sailorhg (ported by @ema2159)
+;;  - doom-feather-dark -- a purple-tinted theme, inspired by doom-one (by @Plunne)
+;;  - doom-feather-light -- a light variable of feather-dark, inspired by doom-one (by @Plunne)
 ;;  - doom-flatwhite -- inspired by Atom's Flatwhite Syntax theme (ported by @JuneKelly)
 ;;  - doom-gruvbox -- inspired by morhetz's Gruvbox (ported by @JongW)
 ;;  - doom-gruvbox-light -- inspired by morhetz's Gruvbox (light) (ported by @jsoa)
@@ -62,6 +64,8 @@
 ;;  - doom-nord-light -- light variant of Nord (ported by @fuxialexander)
 ;;  - doom-nova -- inspired by Trevord Miller's Nova (ported by @bigardone)
 ;;  - doom-oceanic-next -- inspired by Oceanic Next (ported by @juanwolf)
+;;  - doom-oksolar-dark -- an OKLab variant of Solarized dark (ported by @logc)
+;;  - doom-oksolar-light -- an OKLab variant of Solarized light (ported by @logc)
 ;;  - doom-old-hope -- inspired by An Old Hope, in a galaxy far far away (ported by @teesloane)
 ;;  - doom-one -- inspired by Atom One Dark (ported by @hlissner)
 ;;  - doom-one-light -- inspired by Atom One Light (ported by @ztlevi)
@@ -70,6 +74,7 @@
 ;;  - doom-outrun-electric -- a high contrast, neon theme inspired by Outrun Electric on VSCode (ported by @ema2159)
 ;;  - doom-palenight -- adapted from equinusocio's Material themes (ported by @Brettm12345)
 ;;  - doom-peacock -- inspired by daylerees' Peacock (ported by @teesloane)
+;;  - doom-pine -- a green flavor of doom-gruvbox (by @RomanHargrave)
 ;;  - doom-plain -- inspired by gko's plain theme for VSCode (ported by @das-s)
 ;;  - doom-plain-dark -- inspired by gko's plain theme for VSCode (ported by @das-s)
 ;;  - doom-rouge -- ported from VSCode's Rouge Theme (ported by @das-s)
@@ -203,8 +208,8 @@
       (maphash (lambda (face plist)
                  (when (keywordp (car plist))
                    ;; TODO Clean up duplicates in &all/&light/&dark blocks
-                   (dolist (prop (append (unless doom-themes-enable-bold   '(:weight normal :bold nil))
-                                         (unless doom-themes-enable-italic '(:slant normal :italic nil))))
+                   (dolist (prop (append (unless doom-themes-enable-bold   '(:weight normal :bold unspecified))
+                                         (unless doom-themes-enable-italic '(:slant normal :italic unspecified))))
                      (when (and (plist-member plist prop)
                                 (not (eq (plist-get plist prop) 'inherit)))
                        (plist-put plist prop
@@ -372,6 +377,17 @@ between 0 and 1)."
 ;;
 ;;; Defining themes
 
+(defun doom-themes--prepare-facelist-1 (specs)
+  (dolist (spec specs specs)
+    (when spec
+      (setcar (cdr spec)
+              (cl-loop for (classes plist . rest) in (cadr spec)
+                       collect
+                       (cons classes
+                             (cons (cl-loop for (key val) on plist by #'cddr
+                                            append (list key (or val 'unspecified)))
+                                   rest)))))))
+
 (defun doom-themes-prepare-facelist (custom-faces)
   "Return an alist of face definitions for `custom-theme-set-faces'.
 
@@ -395,46 +411,53 @@ Variables in EXTRA-VARS override the default ones."
 If THEME is nil, it applies to all themes you load. FACES is a list of Doom
 theme face specs. These is a simplified spec. For example:
 
-  (doom-themes-set-faces 'user
-    '(default :background red :foreground blue)
-    '(doom-modeline-bar :background (if -modeline-bright modeline-bg highlight))
-    '(doom-modeline-buffer-file :inherit 'mode-line-buffer-id :weight 'bold)
-    '(doom-modeline-buffer-path :inherit 'mode-line-emphasis :weight 'bold)
-    '(doom-modeline-buffer-project-root :foreground green :weight 'bold))"
+  (doom-themes-set-faces \\='user
+    \\='(default :background red :foreground blue)
+    \\='(doom-modeline-bar :background (if -modeline-bright modeline-bg highlight))
+    \\='(doom-modeline-buffer-file :inherit \\='mode-line-buffer-id :weight \\='bold)
+    \\='(doom-modeline-buffer-path :inherit \\='mode-line-emphasis :weight \\='bold)
+    \\='(doom-modeline-buffer-project-root :foreground green :weight \\='bold))"
   (declare (indent defun))
   (apply #'custom-theme-set-faces
          (or theme 'user)
-         (eval
-          `(let* ((bold   ,doom-themes-enable-bold)
-                  (italic ,doom-themes-enable-italic)
-                  ,@(cl-loop for (var . val) in doom-themes--colors
-                             collect `(,var ',val)))
-             (list ,@(mapcar #'doom-themes--build-face faces))))))
+         (doom-themes--prepare-facelist-1
+          (eval
+           `(let* ((bold   ,doom-themes-enable-bold)
+                   (italic ,doom-themes-enable-italic)
+                   ,@(cl-loop for (var . val) in doom-themes--colors
+                              collect `(,var ',val)))
+              (list ,@(mapcar #'doom-themes--build-face faces)))))))
 
-(defmacro def-doom-theme (name docstring defs &optional extra-faces extra-vars)
+(defmacro def-doom-theme (name docstring &rest properties)
   "Define a DOOM theme, named NAME (a symbol)."
-  (declare (doc-string 2))
-  (let ((doom-themes--colors defs))
-    `(let* ((bold   doom-themes-enable-bold)
-            (italic doom-themes-enable-italic)
-            ,@defs)
-       (setq doom-themes--colors
-             (list ,@(cl-loop for (var val) in defs
-                              collect `(cons ',var ,val))))
-       (deftheme ,name ,docstring)
-       (custom-theme-set-faces
-        ',name ,@(doom-themes-prepare-facelist extra-faces))
-       (custom-theme-set-variables
-        ',name ,@(doom-themes-prepare-varlist extra-vars))
-       (unless bold (set-face-bold 'bold nil))
-       (unless italic (set-face-italic 'italic nil))
-       (provide-theme ',name))))
+  (declare (doc-string 2)
+           (indent 2))
+  (let (plist)
+    (while (keywordp (car properties))
+      (cl-callf plist-put plist (pop properties) (pop properties)))
+    (cl-destructuring-bind (defs &optional extra-faces extra-vars) properties
+      (let ((doom-themes--colors defs))
+        `(let* ((bold   doom-themes-enable-bold)
+                (italic doom-themes-enable-italic)
+                ,@defs)
+           (setq doom-themes--colors
+                 (list ,@(cl-loop for (var val) in defs
+                                  collect `(cons ',var ,val))))
+           (deftheme ,name ,docstring :kind 'color-scheme ,@plist)
+           (apply #'custom-theme-set-faces
+                  ',name
+                  (doom-themes--prepare-facelist-1 (list ,@(doom-themes-prepare-facelist extra-faces))))
+           (custom-theme-set-variables
+            ',name ,@(doom-themes-prepare-varlist extra-vars))
+           (unless bold (set-face-bold 'bold 'unspecified))
+           (unless italic (set-face-italic 'italic 'unspecified))
+           (provide-theme ',name))))))
 
 ;;;###autoload
-(when (and (boundp 'custom-theme-load-path) load-file-name)
-  (let* ((base (file-name-directory load-file-name))
-         (dir (expand-file-name "themes/" base)))
-    (add-to-list 'custom-theme-load-path
+(when load-file-name
+  (add-to-list 'custom-theme-load-path
+               (let* ((base (file-name-directory load-file-name))
+                      (dir (expand-file-name "themes/" base)))
                  (or (and (file-directory-p dir) dir)
                      base))))
 

@@ -30,6 +30,8 @@ Can be an integer to determine the exact padding."
 
 (def-doom-theme doom-monokai-pro
   "A port of VS Code's Monokai Pro"
+  :family 'doom-molokai
+  :background-mode 'dark
 
   ;; name        gui       256       16
   ((bg         '("#2D2A2E" nil       nil          ))
@@ -130,7 +132,7 @@ Can be an integer to determine the exact padding."
    (doom-modeline-buffer-path       :foreground blue :bold bold)
    (doom-modeline-buffer-major-mode :inherit 'doom-modeline-buffer-path)
 
-   ((line-number &override) :foreground base4)
+   ((line-number &override) :foreground base5)
    ((line-number-current-line &override) :foreground yellow :bold bold)
 
    ;;;; rainbow-delimiters

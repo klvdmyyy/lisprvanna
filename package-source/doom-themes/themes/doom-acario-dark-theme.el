@@ -43,6 +43,8 @@ determine the exact padding."
 
 (def-doom-theme doom-acario-dark
   "A dark theme inspired by Acario"
+  :family 'doom-acario
+  :background-mode 'dark
 
   ;; name        default   256         16
   ((bg         '("#0D0E16" "color-233" "black"        ))
@@ -108,7 +110,7 @@ determine the exact padding."
     (when doom-acario-dark-padded-modeline
       (if (integerp doom-acario-dark-padded-modeline) doom-acario-dark-padded-modeline 4)))
 
-   (modeline-fg     nil)
+   (modeline-fg     'unspecified)
    (modeline-fg-alt base7)
 
    (modeline-bg
@@ -127,7 +129,9 @@ determine the exact padding."
   ((font-lock-comment-face
     :slant 'italic
     :foreground comments
-    :background (if doom-acario-dark-comment-bg (doom-lighten bg 0.05)))
+    :background (if doom-acario-dark-comment-bg
+                    (doom-lighten bg 0.05)
+                  'unspecified))
    (font-lock-doc-face
     :inherit 'font-lock-comment-face
     :foreground doc-comments)

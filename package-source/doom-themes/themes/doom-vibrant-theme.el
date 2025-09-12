@@ -40,6 +40,8 @@ Can be an integer to determine the exact padding."
 
 (def-doom-theme doom-vibrant
   "A dark theme based off of doom-one with more vibrant colors."
+  :family 'doom-one
+  :background-mode 'light
 
   ;; name        gui       256           16
   ((bg         '("#242730" "black"       "black" ))
@@ -94,7 +96,7 @@ Can be an integer to determine the exact padding."
    (operators      magenta)
    (type           yellow)
    (strings        green)
-   (variables      base8)
+   (variables      (doom-lighten magenta 0.4))
    (numbers        orange)
    (region         "#3d4451")
    (error          red)
@@ -124,7 +126,7 @@ Can be an integer to determine the exact padding."
 
   ;;;; Base theme face overrides
   (((font-lock-comment-face &override)
-    :background (if doom-vibrant-brighter-comments (doom-darken bg-alt 0.095)))
+    :background (if doom-vibrant-brighter-comments (doom-darken bg-alt 0.095) 'unspecified))
    ((line-number &override) :foreground base4)
    ((line-number-current-line &override) :foreground blue :bold bold)
    (mode-line

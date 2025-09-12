@@ -34,7 +34,9 @@ determine the exact padding."
 ;;; Theme definition
 
 (def-doom-theme doom-homage-black
-  "A light theme inspired by Atom One"
+  "A light theme inspired by eziam"
+  :family 'doom-homage
+  :background-mode 'dark
 
   ;; name        default   256       16
   ((bg         '("#000000" nil       nil            ))
@@ -94,7 +96,7 @@ determine the exact padding."
     (when doom-homage-black-padded-modeline
       (if (integerp doom-homage-black-padded-modeline) doom-homage-black-padded-modeline 4)))
 
-   (modeline-fg     nil)
+   (modeline-fg     'unspecified)
    (modeline-fg-alt (doom-blend violet base4 (if -modeline-bright 0.5 0.2)))
 
    (modeline-bg
@@ -179,9 +181,9 @@ determine the exact padding."
    ((org-todo &override) :foreground red)
    ;; make tags and dates to have pretty box around them
    ((org-tag &override)   :foreground fg :background base1
-    :box `(:line-width -1 :color ,base5 :style 'released-button))
+    :box `(:line-width -1 :color ,base5 :style released-button))
    ((org-date &override)  :foreground fg :background base1
-    :box `(:line-width -1 :color ,base5  :style 'released-button))
+    :box `(:line-width -1 :color ,base5 :style released-button))
    ;; Make drawers and special keywords (like scheduled) to be very bleak
    ((org-special-keyword &override)  :foreground grey)
    ((org-drawer          &override)  :foreground grey)

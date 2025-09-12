@@ -123,7 +123,7 @@ determine the exact padding."
 
    (region-alt `(,(car base3) ,@(cdr base4)))
 
-   (modeline-fg     nil)
+   (modeline-fg     'unspecified)
    (modeline-fg-alt base5)
 
    (modeline-bg
@@ -142,7 +142,7 @@ determine the exact padding."
   (((line-number &override) :foreground base5)
    ((line-number-current-line &override) :foreground fg)
    ((font-lock-comment-face &override)
-    :background (if doom-dracula-comment-bg (doom-lighten bg 0.05)))
+    :background (if doom-dracula-comment-bg (doom-lighten bg 0.05) 'unspecified))
    (mode-line
     :background modeline-bg :foreground modeline-fg
     :box (if -modeline-pad `(:line-width ,-modeline-pad :color ,modeline-bg)))
@@ -213,7 +213,7 @@ determine the exact padding."
    (org-agenda-done :foreground base4)
    (org-agenda-structure :foreground violet)
    ((org-block &override) :background (doom-darken base1 0.125) :foreground violet)
-   ((org-block-begin-line &override) :background (doom-darken base1 0.125) :foreground comments)
+   ((org-block-begin-line &override) :background (doom-darken base1 0.125))
    ((org-code &override) :foreground yellow)
    (org-column :background base1)
    (org-column-title :background base1 :bold t :underline t)
