@@ -343,6 +343,9 @@
 
 ;;; Cape:
 
+(autoload 'cape-file "cape")
+(autoload 'cape-history "cape")
+
 (add-hook 'completion-at-point-functions #'cape-file)
 (add-hook 'completion-at-point-functions #'cape-history)
 
