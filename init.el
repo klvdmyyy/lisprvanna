@@ -509,6 +509,10 @@
 
 (provide 'init)
 
+;;; TODO FIXME NOTE MAYBE:
+
+(require 'pyvenv)
+
 ;;; init.el ends here
 
 ;;; Local Variables:
