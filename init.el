@@ -329,7 +329,8 @@
   (custom-set-variables
    '(corfu-cycle t)
    '(tab-always-indent 'complete))
-  (global-corfu-mode 1)
+  ;; (global-corfu-mode 1)
+  (add-hook 'prog-mode-hook 'corfu-mode)
 
   (require 'corfu-popupinfo)
   (corfu-popupinfo-mode 1)
