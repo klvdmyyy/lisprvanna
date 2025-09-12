@@ -46,7 +46,11 @@
         ("nongnu" . "https://elpa.nongnu.org/nongnu/")
         ("melpa" . "https://melpa.org/packages/")))
 
-(advice-add 'stp-install-command :before 'package-refresh-contents)
+;; Refresh package archives once at first usage of `stp-install-command'.
+(define-advice stp-install-command
+    (:before (&rest _) package-refresh-contents-once)
+  (package-refresh-contents)
+  (advice-remove 'stp-install-command #'stp-install-command@package-refresh-contents-once))
 
 ;;; Home Directories:
 
