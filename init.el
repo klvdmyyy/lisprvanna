@@ -4,6 +4,8 @@
 ;;
 ;;; Commentary:
 ;;
+;; TODO: No-prog configuration. (use `zenburn' theme??)
+;;
 ;; Navigation
 ;; ==========
 ;;
