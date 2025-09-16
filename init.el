@@ -407,6 +407,7 @@
    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
      (python "https://github.com/tree-sitter/tree-sitter-python")
      (c "https://github.com/tree-sitter/tree-sitter-c")
+     (zig "https://github.com/maxxnino/tree-sitter-zig")
      ;; (cpp "https://github.com/tree-sitter/tree-sitter-cpp")
      )))
 
@@ -438,6 +439,14 @@
   (setq c-ts-mode-hook (append c-ts-mode-hook c-mode-hook)))
 
 (add-hook 'c-ts-mode-hook 'eglot-ensure)
+
+;;; Zig:
+
+(autoload 'zig-ts-mode "zig-ts-mode" nil t)
+
+(add-to-list 'auto-mode-alist '("\\.zig\\'" . zig-ts-mode))
+
+(add-hook 'zig-ts-mode-hook 'eglot-ensure)
 
 ;;; Python:
 
