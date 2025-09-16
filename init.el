@@ -21,6 +21,8 @@
 ;; For more documentation about subtree-package see
 ;; source code and original author github.
 ;;
+;; TODO: Packages building (like elpaca or straight).
+;;
 ;;
 ;; Without `use-package'
 ;; ---------------------
