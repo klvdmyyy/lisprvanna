@@ -22,6 +22,15 @@
 ;; source code and original author github.
 ;;
 ;;
+;; Without `use-package'
+;; ---------------------
+;;
+;; This configuration doesn't have `use-package'.
+;;
+;; This way can provide full control over your
+;; Emacs Lisp code.
+;;
+;;
 ;; Color themes
 ;; ============
 ;;
